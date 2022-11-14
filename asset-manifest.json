@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/davidhikesalot/davidhikesalot.github.io/static/css/main.073c9b0a.css",
-    "main.js": "/davidhikesalot/davidhikesalot.github.io/static/js/main.30c57622.js",
-    "static/js/787.d93ac1b9.chunk.js": "/davidhikesalot/davidhikesalot.github.io/static/js/787.d93ac1b9.chunk.js",
-    "static/media/logo.svg": "/davidhikesalot/davidhikesalot.github.io/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/davidhikesalot/davidhikesalot.github.io/index.html",
-    "main.073c9b0a.css.map": "/davidhikesalot/davidhikesalot.github.io/static/css/main.073c9b0a.css.map",
-    "main.30c57622.js.map": "/davidhikesalot/davidhikesalot.github.io/static/js/main.30c57622.js.map",
-    "787.d93ac1b9.chunk.js.map": "/davidhikesalot/davidhikesalot.github.io/static/js/787.d93ac1b9.chunk.js.map"
+    "main.css": "/static/css/main.073c9b0a.css",
+    "main.js": "/static/js/main.3a9e7587.js",
+    "static/js/787.d93ac1b9.chunk.js": "/static/js/787.d93ac1b9.chunk.js",
+    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/index.html",
+    "main.073c9b0a.css.map": "/static/css/main.073c9b0a.css.map",
+    "main.3a9e7587.js.map": "/static/js/main.3a9e7587.js.map",
+    "787.d93ac1b9.chunk.js.map": "/static/js/787.d93ac1b9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.30c57622.js"
+    "static/js/main.3a9e7587.js"
   ]
 }
