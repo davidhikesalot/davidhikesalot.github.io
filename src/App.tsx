@@ -64,5 +64,5 @@ export default function App() {
         <footer>
         </footer>
       </div>
-    );
+    )
 }
