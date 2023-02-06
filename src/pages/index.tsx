@@ -1,14 +1,14 @@
 // All Pages
-import {ChallengePage} from "./challenge.page";
+import {EastBayChallengePage} from "./eastbaychallenge.page";
+import {HikesPage} from "./hikes.page" 
 import {ParksPage} from "./parks.page" 
-import {CompletedPage} from "./completed.page" 
-import {PlannedPage} from "./planned.page"
+import {PlansPage} from "./plans.page"
 import {YouAreLostPage} from "./error.page"
 
 export {
-    ChallengePage,
+    EastBayChallengePage,
+    HikesPage,
     ParksPage,
-    CompletedPage,
-    PlannedPage,
+    PlansPage,
     YouAreLostPage,
 }
