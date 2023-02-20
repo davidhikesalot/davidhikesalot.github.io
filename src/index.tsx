@@ -1,16 +1,40 @@
-import React from "react"
-import ReactDOM from "react-dom/client"
-import { BrowserRouter } from "react-router-dom"
-import App from "./App"
-import { GitHubCorner } from "./components/github-corner.component"
-import "./index.css"
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import App from "./App";
+import ErrorPage from "./pages/error.page";
+import "./index.css";
+import { EastBayChallengePage, HikesPage, ParksPage, PlansPage } from "./pages";
+// import { GitHubCorner } from "./components/github-corner.component";
 
-const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "challenge",
+        element: <EastBayChallengePage />,
+      },
+      {
+        path: "hikes",
+        element: <HikesPage />,
+      },
+      {
+        path: "plans",
+        element: <PlansPage />,
+      },
+    ],
+  },
+]);
+
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-      <GitHubCorner />
-    </BrowserRouter>
+    <RouterProvider router={router} />
   </React.StrictMode>
-)
+);
