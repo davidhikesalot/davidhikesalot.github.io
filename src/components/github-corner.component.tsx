@@ -9,7 +9,7 @@ export function GitHubCorner(props: any) {
       className="github-corner"
       aria-label="View source on GitHub"
     >
-      <ReactSVG src={svg} />
+      <ReactSVG className="octocat-svg" src={svg} />
     </a>
   );
 }

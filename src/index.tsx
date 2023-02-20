@@ -8,17 +8,15 @@ import "./index.css";
 import { EastBayChallengePage, HikesPage, ParksPage, PlansPage } from "./pages";
 import { GitHubCorner } from "./components/github-corner.component";
 
-const rootElement: React.ReactNode = (
-  <>
-    <App />
-    <GitHubCorner />
-  </>
-);
-
 const router = createBrowserRouter([
   {
     path: "/",
-    element: rootElement,
+    element: (
+      <>
+        <App />
+        <GitHubCorner />
+      </>
+    ),
     errorElement: <ErrorPage />,
     children: [
       {
