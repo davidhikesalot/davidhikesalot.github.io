@@ -6,12 +6,19 @@ import App from "./App";
 import ErrorPage from "./pages/error.page";
 import "./index.css";
 import { EastBayChallengePage, HikesPage, ParksPage, PlansPage } from "./pages";
-// import { GitHubCorner } from "./components/github-corner.component";
+import { GitHubCorner } from "./components/github-corner.component";
+
+const rootElement: React.ReactNode = (
+  <>
+    <App />
+    <GitHubCorner />
+  </>
+);
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: rootElement,
     errorElement: <ErrorPage />,
     children: [
       {
