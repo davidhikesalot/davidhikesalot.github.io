@@ -1,15 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.9a4f9089.css",
-    "main.js": "/static/js/main.29ea7faa.js",
+    "main.css": "/static/css/main.425a59cd.css",
+    "main.js": "/static/js/main.fae78468.js",
+    "static/media/fa-solid-900.ttf": "/static/media/fa-solid-900.2877d54f94f30c5d563c.ttf",
+    "static/media/fa-brands-400.ttf": "/static/media/fa-brands-400.13e40630e5866f777de8.ttf",
+    "static/media/fa-solid-900.woff2": "/static/media/fa-solid-900.bdb9e23299f9d1320a8b.woff2",
     "static/media/bg-topo-square.png": "/static/media/bg-topo-square.89f9cef1820c94f1fa71.png",
+    "static/media/fa-brands-400.woff2": "/static/media/fa-brands-400.7be2266f1be21c44ecd4.woff2",
+    "static/media/fa-regular-400.ttf": "/static/media/fa-regular-400.146404900f7550a9719d.ttf",
+    "static/media/fa-regular-400.woff2": "/static/media/fa-regular-400.8bedd7cfa43a6c358cdd.woff2",
+    "static/media/fa-v4compatibility.ttf": "/static/media/fa-v4compatibility.6c0a7b774ffa1cf0a059.ttf",
+    "static/media/fa-v4compatibility.woff2": "/static/media/fa-v4compatibility.497d535001197a9c5b38.woff2",
     "index.html": "/index.html",
-    "static/media/github-corner.svg": "/static/media/github-corner.a055285f8f6f2839dc7eb28030f7104e.svg",
-    "main.9a4f9089.css.map": "/static/css/main.9a4f9089.css.map",
-    "main.29ea7faa.js.map": "/static/js/main.29ea7faa.js.map"
+    "main.425a59cd.css.map": "/static/css/main.425a59cd.css.map",
+    "main.fae78468.js.map": "/static/js/main.fae78468.js.map"
   },
   "entrypoints": [
-    "static/css/main.9a4f9089.css",
-    "static/js/main.29ea7faa.js"
+    "static/css/main.425a59cd.css",
+    "static/js/main.fae78468.js"
   ]
 }
