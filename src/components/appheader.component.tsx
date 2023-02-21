@@ -1,37 +1,69 @@
+import "./appheader.component.css";
+import { Navbar, Nav, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { ReactNode } from "react";
 import { LinkContainer } from "react-router-bootstrap";
 
-import Container from "react-bootstrap/Container";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBullseye } from "@fortawesome/free-solid-svg-icons";
+import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
+
+interface INavLinkWithTooltipProps {
+  href?: string;
+  tooltip: string;
+  children: ReactNode;
+}
+
+function NavLinkWithTooltip({
+  href = "",
+  tooltip,
+  children,
+}: INavLinkWithTooltipProps) {
+  const id: string = `tooltip-${Math.floor(Math.random() * 2 ** 6)}`;
+  return (
+    <OverlayTrigger
+      placement="bottom"
+      delay={{ show: 300, hide: 150 }}
+      overlay={
+        <Tooltip id={id} className="appheader-tooltip">
+          {tooltip}
+        </Tooltip>
+      }
+    >
+      <Nav.Link href={href}>{children}</Nav.Link>
+    </OverlayTrigger>
+  );
+}
 
 export function AppHeader() {
   return (
-    <header>
+    <header id="app-header">
       <div className="card">
         <div className="card-body">
-          <Navbar collapseOnSelect bg="light" expand="lg">
-            <Container>
-              <Navbar.Toggle aria-controls="navbar-nav" />
-              <Navbar.Collapse id="navbar-nav">
-                <Nav className="me-auto">
-                  <LinkContainer to="/challenge">
-                    <Nav.Link>East Bay Challenge</Nav.Link>
-                  </LinkContainer>
-                  <LinkContainer to="/parks">
-                    <Nav.Link>Parks</Nav.Link>
-                  </LinkContainer>
-                  <LinkContainer to="/hikes">
-                    <Nav.Link>Completed</Nav.Link>
-                  </LinkContainer>
-                  <LinkContainer to="/plans">
-                    <Nav.Link>Planned</Nav.Link>
-                  </LinkContainer>
-                  <Nav.Link href="https://www.facebook.com/davidhikesalot">
-                    Facebook Page
-                  </Nav.Link>
-                </Nav>
-              </Navbar.Collapse>
-            </Container>
+          <Navbar>
+            <Nav className="me-auto">
+              <LinkContainer to="/hikes">
+                <Nav.Link>Hikes</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/parks">
+                <Nav.Link>Parks</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/plans">
+                <Nav.Link>Plans</Nav.Link>
+              </LinkContainer>
+            </Nav>
+            <Nav>
+              <LinkContainer to="/challenge">
+                <NavLinkWithTooltip tooltip="East Bay Parks Challenge">
+                  <FontAwesomeIcon icon={faBullseye} />
+                </NavLinkWithTooltip>
+              </LinkContainer>
+              <NavLinkWithTooltip
+                tooltip="David Hikes a Lot Facebook Page"
+                href="https://www.facebook.com/davidhikesalot"
+              >
+                <FontAwesomeIcon icon={faFacebookF} />
+              </NavLinkWithTooltip>
+            </Nav>
           </Navbar>
         </div>
       </div>

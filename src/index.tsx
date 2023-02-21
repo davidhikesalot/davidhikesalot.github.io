@@ -1,4 +1,3 @@
-import "@fortawesome/fontawesome-free/css/all.min.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -26,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "hikes",
         element: <HikesPage />,
+      },
+      {
+        path: "parks",
+        element: <ParksPage />,
       },
       {
         path: "plans",

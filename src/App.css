@@ -4,23 +4,6 @@
   padding: 0px 48px;
 }
 
-header {
-  margin-top: .75em;
-}
-
-header .navbar {
-  /* background-color: #504741 !important; */
-  padding: 0;
-}
-
-header .navbar .nav-link {
-  color: #999999 !important;
-} 
-
-header .navbar .nav-link:not(:last-child) {
-  border-right: 1px solid #999999;
-}
-
 #content {
   margin-top: 10px;
   padding: 1em;
