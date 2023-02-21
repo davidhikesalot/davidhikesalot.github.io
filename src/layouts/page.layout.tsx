@@ -1,13 +1,14 @@
 import { Outlet } from "react-router-dom";
 import { ISiteData } from "../services/data.service";
 
-
 export interface IPageLayoutProps {
-    data: ISiteData;
+  data: ISiteData;
 }
 
 export function PageLayout(props: IPageLayoutProps) {
-    return (
-        <Outlet context={props} />
-    )
+  return (
+    <section id="content">
+      <Outlet context={props} />
+    </section>
+  );
 }

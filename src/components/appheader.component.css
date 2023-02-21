@@ -1,0 +1,26 @@
+header {
+    margin-top: .75em;
+}
+
+.appheader-tooltip {
+    font-size: xx-small;
+}
+header .card {
+    background-color: #504741 !important;
+}
+
+header .card-body {
+    padding: 0;
+}
+
+header .navbar {
+    padding: 0;
+}
+
+header .navbar .nav-link {
+    color: #999999 !important;
+} 
+
+header .navbar .nav-link:not(:last-child) {
+    border-right: 1px solid #999999;
+}

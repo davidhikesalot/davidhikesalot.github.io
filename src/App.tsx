@@ -20,15 +20,11 @@ export default function App() {
 
   // const siteData = { parks, hikes }
   return (
-    <div className="App">
+    <div className={`app ${isLoaded ? "loaded" : ""}`}>
       <AppHeader />
-      <section id="content" className={`card ${isLoaded ? "loaded" : ""}`}>
-        <div className="card-body">
-          <PageLayout {...props}>
-            <Outlet />
-          </PageLayout>
-        </div>
-      </section>
+      <PageLayout {...props}>
+        <Outlet />
+      </PageLayout>
       <footer></footer>
     </div>
   );
