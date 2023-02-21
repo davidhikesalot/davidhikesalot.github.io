@@ -23,6 +23,7 @@ const router = createBrowserRouter([
         element: <EastBayChallengePage />,
       },
       {
+        index: true,
         path: "hikes",
         element: <HikesPage />,
       },

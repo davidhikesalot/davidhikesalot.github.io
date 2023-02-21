@@ -57,12 +57,15 @@ export class HikeStats {
 
 export class Hike {
   _hike: IGoogleSheetRow;
-  _date: Date;
+  _date?: Date;
   _stats: HikeStats;
   _park?: Park;
   constructor(row: IGoogleSheetRow, parks: Parks) {
     this._hike = row;
     this._date = new Date(this.get("hikedate"));
+    if (this._date.toString() === "Invalid Date") {
+      this._date = undefined;
+    }
     this._stats = new HikeStats(row);
     this._park = parks.find(this.get("parkname"));
     if (this._park) {
@@ -86,7 +89,7 @@ export class Hike {
     return this.get("hikestatus") === "nexthike";
   }
 
-  get date(): Date {
+  get date(): Date | undefined {
     return this._date;
   }
 

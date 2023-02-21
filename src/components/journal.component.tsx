@@ -1,6 +1,5 @@
 import { Hike, HikeStats } from "../services/hikes.service";
-import { Link } from "react-router-dom";
-import { format as dateFormat } from "date-fns";
+import { format as dateFormat, isBefore } from "date-fns";
 
 function HikesJournalEntryStats({ hikeStats }: { hikeStats: HikeStats }) {
   return (
@@ -12,22 +11,28 @@ function HikesJournalEntryStats({ hikeStats }: { hikeStats: HikeStats }) {
   );
 }
 
-function HikesJournalEntryDate({ hikeDateStr }: { hikeDateStr: string }) {
-  const hikeDate = new Date(hikeDateStr);
-  return hikeDate.toString() === "Invalid Date" ? (
-    <div className="hike-entry-sidebar">
-      <div className="hike-entry-header">{hikeDateStr}</div>
-    </div>
-  ) : (
-    <time className="hike-entry-sidebar" dateTime={dateFormat(hikeDate, "L")}>
+function HikesJournalEntryDate({ hike }: { hike: Hike }) {
+  if (!hike.date) {
+    const hikeDateText = hike.get("hikedate");
+    return hikeDateText ? (
+      <div className="hike-entry-sidebar">
+        <div className="hike-entry-header">{hike.get("hikedate")}</div>
+      </div>
+    ) : (
+      <></>
+    );
+  }
+
+  return (
+    <time className="hike-entry-sidebar" dateTime={dateFormat(hike.date, "L")}>
       <div className="hike-entry-header">
-        {dateFormat(hikeDate, "MMM")} {dateFormat(hikeDate, "yyyy")}
+        {dateFormat(hike.date, "MMM")} {dateFormat(hike.date, "yyyy")}
       </div>
       <div className="hike-entry-sidebar-main">
-        {dateFormat(hikeDate, "dd")}
+        {dateFormat(hike.date, "dd")}
       </div>
       <div className="hike-entry-sidebar-footer">
-        {dateFormat(hikeDate, "EEEE")}
+        {dateFormat(hike.date, "EEEE")}
       </div>
     </time>
   );
@@ -41,9 +46,12 @@ function HikesJournalEntry({ hike }: { hike: Hike }) {
     "";
   const gotoLink = () => (window.location.href = href);
   return (
-    <button className="hike-entry card flex-row mb-2">
+    <button
+      className="hike-entry card flex-row mb-2"
+      onClick={() => gotoLink()}
+    >
       <div className="card-header p-0 border-0">
-        <HikesJournalEntryDate hikeDateStr={hike.get("hikedate")} />
+        <HikesJournalEntryDate hike={hike} />
       </div>
       <div className="card-body hike-entry-body p-0 border-0">
         <div className="hike-entry-header">{hike.get("hikename")}</div>
@@ -60,10 +68,23 @@ function HikesJournalEntry({ hike }: { hike: Hike }) {
 }
 
 export function HikesJournalEntries({ hikes = [] }: { hikes?: Hike[] }) {
+  const sortOrder = (cond: Boolean) => (cond === true ? -1 : 1);
+  const compareHikeDates = (a: Hike, b: Hike) => {
+    if (a.date || b.date) {
+      return a.date && b.date
+        ? sortOrder(isBefore(b.date, a.date))
+        : sortOrder(!!a.date);
+    }
+
+    const aStr = a.get("hikedate");
+    const bStr = b.get("hikedate");
+    return aStr && bStr ? aStr.localeCompare(bStr) : sortOrder(!!aStr);
+  };
+
   return (
     <div className="hike-list-items">
       {hikes
-        .sort((a: Hike, b: Hike) => b.date.valueOf() - a.date.valueOf())
+        .sort((a: Hike, b: Hike) => compareHikeDates(a, b))
         .map((hike, index) => (
           <HikesJournalEntry key={`entry-${index}`} hike={hike} />
         ))}
