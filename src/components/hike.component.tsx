@@ -50,10 +50,14 @@ export function HikeList(props: any) {
   const hikes: Hike[] = props.hikes || [];
 
   return (
-    <div className="hike-list">
-      <h5 className="hike-list-name">{name}</h5>
-      <HikeListStats hikes={hikes} />
-      <HikeListItems hikes={hikes} />
+    <div className="app-card hike-list card mb-2 p-0 border-0">
+      <h5 className="hike-list-name hike-entry-header card-header p-2">
+        {name}
+      </h5>
+      <div className="card-body p-2">
+        <HikeListStats hikes={hikes} />
+        <HikeListItems hikes={hikes} />
+      </div>
     </div>
   );
 }

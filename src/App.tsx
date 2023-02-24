@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import { ISiteData, fetchSiteData } from "./services/data.service";
 import { IPageLayoutProps, PageLayout } from "./layouts/page.layout";
 import { AppHeader } from "./components/appheader.component";
+import { GitHubCorner } from "./components/github-corner.component";
 import "./App.css";
 
 export default function App() {
@@ -20,12 +21,15 @@ export default function App() {
 
   // const siteData = { parks, hikes }
   return (
-    <div className={`app ${isLoaded ? "loaded" : ""}`}>
-      <AppHeader />
-      <PageLayout {...props}>
-        <Outlet />
-      </PageLayout>
-      <footer></footer>
-    </div>
+    <>
+      <div className={`app ${isLoaded ? "loaded" : ""}`}>
+        <AppHeader />
+        <PageLayout {...props}>
+          <Outlet />
+        </PageLayout>
+        <footer></footer>
+      </div>
+      <GitHubCorner />
+    </>
   );
 }

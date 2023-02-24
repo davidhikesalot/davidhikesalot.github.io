@@ -3,9 +3,9 @@ import { format as dateFormat, isBefore } from "date-fns";
 
 function HikesJournalEntryStats({ hikeStats }: { hikeStats: HikeStats }) {
   return (
-    <div className="hike-entry-sidebar">
+    <div className="hike-entry-sidebar hike-entry-stats">
       <div className="hike-entry-header">{hikeStats.rating}</div>
-      <div className="hike-entry-sidebar-main">{hikeStats.distance}</div>
+      <div className="hike-entry-sidebar-body">{hikeStats.distance} mi</div>
       <div className="hike-entry-sidebar-footer">{hikeStats.elevation}'</div>
     </div>
   );
@@ -24,11 +24,14 @@ function HikesJournalEntryDate({ hike }: { hike: Hike }) {
   }
 
   return (
-    <time className="hike-entry-sidebar" dateTime={dateFormat(hike.date, "L")}>
+    <time
+      className="hike-entry-sidebar hike-entry-date"
+      dateTime={dateFormat(hike.date, "L")}
+    >
       <div className="hike-entry-header">
         {dateFormat(hike.date, "MMM")} {dateFormat(hike.date, "yyyy")}
       </div>
-      <div className="hike-entry-sidebar-main">
+      <div className="hike-entry-sidebar-body">
         {dateFormat(hike.date, "dd")}
       </div>
       <div className="hike-entry-sidebar-footer">
@@ -47,20 +50,18 @@ function HikesJournalEntry({ hike }: { hike: Hike }) {
   const gotoLink = () => (window.location.href = href);
   return (
     <button
-      className="hike-entry card flex-row mb-2"
+      className="hike-entry card d-flex flex-row mb-2 align-items-stretch"
       onClick={() => gotoLink()}
     >
-      <div className="card-header p-0 border-0">
+      <div className="hike-entry-sidebar card-header">
         <HikesJournalEntryDate hike={hike} />
       </div>
-      <div className="card-body hike-entry-body p-0 border-0">
-        <div className="hike-entry-header">{hike.get("hikename")}</div>
-        <div className="hike-entry-main">
-          <div>{hike.parkAddress}</div>
-          <div>{hike.get("teaser")}</div>
-        </div>
+      <div className="hike-entry-main card-body">
+        <h5>{hike.get("hikename")}</h5>
+        <div>{hike.parkAddress}</div>
+        <div>{hike.get("teaser")}</div>
       </div>
-      <div className="card-footer p-0 border-0">
+      <div className="hike-entry-sidebar card-footer">
         <HikesJournalEntryStats hikeStats={hike.stats} />
       </div>
     </button>
@@ -82,12 +83,12 @@ export function HikesJournalEntries({ hikes = [] }: { hikes?: Hike[] }) {
   };
 
   return (
-    <div className="hike-list-items">
+    <>
       {hikes
         .sort((a: Hike, b: Hike) => compareHikeDates(a, b))
         .map((hike, index) => (
           <HikesJournalEntry key={`entry-${index}`} hike={hike} />
         ))}
-    </div>
+    </>
   );
 }

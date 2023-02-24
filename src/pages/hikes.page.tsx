@@ -9,9 +9,9 @@ export function HikesPage(props: any) {
   const hikes: Hike[] = ctx.data.hikes?.completed || [];
   return (
     <div className="hikes-journal">
-      <div className="card mb-2 p-0">
+      <div className="app-card card mb-2 p-0">
+        <h4 className="card-header app-card-header-style">Hiking Journal</h4>
         <div className="card-body p-2">
-          <h5>Hiking Journal</h5>
           <small>
             <HikeListStats hikes={hikes} />
           </small>

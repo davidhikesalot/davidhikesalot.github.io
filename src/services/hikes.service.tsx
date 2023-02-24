@@ -119,9 +119,11 @@ export class Hike {
 export class Hikes {
   private _hikes: Hike[];
   constructor(fetchJson: any, parks: Parks) {
-    this._hikes = fetchJson.rows.map(
-      (row: IGoogleSheetRow) => new Hike(row, parks)
-    );
+    const rowHasHike = (row: IGoogleSheetRow) =>
+      "hikename" in row && row["hikename"].trim();
+    this._hikes = fetchJson.rows
+      .filter(rowHasHike)
+      .map((row: IGoogleSheetRow) => new Hike(row, parks));
   }
 
   get completed(): Hike[] {

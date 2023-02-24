@@ -5,17 +5,11 @@ import App from "./App";
 import ErrorPage from "./pages/error.page";
 import "./index.css";
 import { EastBayChallengePage, HikesPage, ParksPage, PlansPage } from "./pages";
-import { GitHubCorner } from "./components/github-corner.component";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <>
-        <App />
-        <GitHubCorner />
-      </>
-    ),
+    element: <App />,
     errorElement: <ErrorPage />,
     children: [
       {

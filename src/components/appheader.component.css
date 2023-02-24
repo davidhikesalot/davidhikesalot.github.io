@@ -6,7 +6,7 @@ header {
     font-size: xx-small;
 }
 header .card {
-    background-color: #504741 !important;
+    background-color: var(--app-heading-background-color);
 }
 
 header .card-body {
