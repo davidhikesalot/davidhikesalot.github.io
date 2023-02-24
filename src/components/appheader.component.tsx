@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 import { LinkContainer } from "react-router-bootstrap";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBullseye } from "@fortawesome/free-solid-svg-icons";
+// import { faBullseye } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 
 interface INavLinkWithTooltipProps {
@@ -44,19 +44,19 @@ export function AppHeader() {
               <LinkContainer to="/hikes">
                 <Nav.Link>Hikes</Nav.Link>
               </LinkContainer>
-              <LinkContainer to="/parks">
+              {/* <LinkContainer to="/parks">
                 <Nav.Link>Parks</Nav.Link>
-              </LinkContainer>
+              </LinkContainer> */}
               <LinkContainer to="/plans">
                 <Nav.Link>Plans</Nav.Link>
               </LinkContainer>
             </Nav>
             <Nav>
-              <LinkContainer to="/challenge">
+              {/* <LinkContainer to="/challenge">
                 <NavLinkWithTooltip tooltip="East Bay Parks Challenge">
                   <FontAwesomeIcon icon={faBullseye} />
                 </NavLinkWithTooltip>
-              </LinkContainer>
+              </LinkContainer> */}
               <NavLinkWithTooltip
                 tooltip="David Hikes a Lot Facebook Page"
                 href="https://www.facebook.com/davidhikesalot"

@@ -1,5 +1,5 @@
 import { useOutletContext } from "react-router-dom";
-import { HikeList } from "../components/hike.component";
+import { HikeList } from "../components/hikelist.component";
 import { IPageLayoutProps } from "../layouts/page.layout";
 
 export function PlansPage(props: any) {
