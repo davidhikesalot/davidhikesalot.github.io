@@ -62,13 +62,17 @@
   margin-right: 0;
   padding-left: 0;
   padding-right: 0;
-  background: green;
 }
 
-.hike-cards .card {
+.hike-cards .col {
   margin-bottom: 1em;
   padding-left: 0;
   padding-right: 0;
+}
+
+.hike-cards .card {
+  margin: 0;
+  padding: 0;
   min-width: 250px;
 }
 
