@@ -33,14 +33,47 @@
   color: var(--app-heading-color);
   border-bottom: 1px dashed var(--app-heading-color);
   box-shadow: 0 2px 0 var(--app-heading-background-color);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
   font-weight: bold;
-  padding: 0.5em;
+  padding: 0.25em;
   font-size: 1.1em;
+  width: 100%;
 }
 
-.app-card .card-body {
-  background-color: var(--app-content-background-color);
-  border-radius: 0 0 15px 15px;
+.app-card .card-footer {
+  padding: 0.25em;
+  font-size: 1em;
+  width: 100%;
+}
+
+.hike-cards {
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-left: 0;
+  padding-right: 0;
+  max-width: unset;
+}
+
+.hike-cards .row {
+  column-gap: 10px;
+  justify-content: space-between;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+  background: green;
+}
+
+.hike-cards .card {
+  margin-bottom: 1em;
+  padding-left: 0;
+  padding-right: 0;
+  min-width: 250px;
+}
+
+.hike-cards .card-header {
+  white-space: nowrap;
 }
 
 .hike-list .hike-list-stats {
@@ -89,6 +122,12 @@
   border: 0;
   text-align: start;
   padding: 0.5em;
+  padding-top: 0.1em;
+}
+
+.hike-entry-main .hike-entry-name {
+  font-size: 1em;
+  font-weight: 900;
 }
 
 .hike-entry-sidebar

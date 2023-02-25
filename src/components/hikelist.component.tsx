@@ -1,4 +1,5 @@
 import { Hike, HikeStats } from "../services/hikes.service";
+import { Badge } from "react-bootstrap";
 
 export function HikeListItemStats(props: any) {
   return (
@@ -8,17 +9,26 @@ export function HikeListItemStats(props: any) {
   );
 }
 
-function HikeListItem(props: { hike: Hike; whatever: string }) {
+function HikeListItem(props: { hike: Hike }) {
   return (
-    <li>
-      <span>{props.hike.get("parkname")}</span>
-      <a href={props.hike.get("mapurl")} rel="noreferrer" target="_blank">
-        {props.hike.get("hikename")}
-      </a>
-      <span>
-        ({props.hike.stats.distance}mi, {props.hike.stats.elevation}ft gain)
-      </span>
-    </li>
+    <div className="hike-entry card d-flex flex-row mb-2 align-items-stretch">
+      <div className="card-body m-0 p-0">
+        <Badge className="me-1" bg="secondary">
+          {props.hike.stats.distance}mi
+        </Badge>
+      </div>
+      <div className="card-body m-0 p-0">
+        <span className="me-1">{props.hike.get("parkname")}</span>
+        <a href={props.hike.get("mapurl")} rel="noreferrer" target="_blank">
+          {props.hike.get("hikename")}
+        </a>
+      </div>
+      <div className="card-footer m-0 p-0">
+        <Badge className="ms-1" bg="secondary">
+          {props.hike.stats.elevation}ft gain
+        </Badge>
+      </div>
+    </div>
   );
 }
 
@@ -26,11 +36,11 @@ function HikeListItems(props: any) {
   const hikes: Hike[] = props.hikes || [];
 
   return (
-    <ul className="hike-list-items">
+    <div className="hike-list-items">
       {hikes.map((hike) => (
-        <HikeListItem hike={hike} whatever="hello" />
+        <HikeListItem hike={hike} />
       ))}
-    </ul>
+    </div>
   );
 }
 

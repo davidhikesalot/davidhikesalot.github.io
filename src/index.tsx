@@ -13,13 +13,13 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "challenge",
-        element: <EastBayChallengePage />,
-      },
-      {
         index: true,
         path: "hikes",
         element: <HikesPage />,
+      },
+      {
+        path: "challenge",
+        element: <EastBayChallengePage />,
       },
       {
         path: "parks",
