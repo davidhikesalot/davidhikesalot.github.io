@@ -14,6 +14,10 @@ const router = createHashRouter([
     children: [
       {
         index: true,
+        element: <HikesPage />,
+      },
+      {
+        index: true,
         path: "hikes",
         element: <HikesPage />,
       },
