@@ -21,7 +21,7 @@ function JournalDate({ hike }: { hike: Hike }) {
 function RatingPill({ rating }: { rating: string }) {
   const ratings: Record<string, string> = {
     easy: "success",
-    moderate: "info",
+    moderate: "primary",
     hard: "danger",
   };
   let bg = ratings[rating] ?? "secondary";

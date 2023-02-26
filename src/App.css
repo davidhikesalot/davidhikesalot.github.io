@@ -7,7 +7,13 @@
 .app {
   max-width: 1280px;
   margin: 0px auto 0px;
-  padding: 0px 32px;
+  padding: 0px 48px;
+}
+
+@media only screen and (max-width: 600px) {
+  .app {
+    padding: 0px 32px;
+  }
 }
 
 #content {
@@ -86,6 +92,29 @@
   font-size: smaller;
 }
 
+.hike-cards .card-footer .badge.bg-secondary {
+  /* badge for stats */
+  background-color: var(--app-heading-background-color) !important;
+  color: beige; /* var(--app-heading-color) !important; */
+}
+
+.hike-cards .card-footer .badge.bg-success {
+  /* badge for rating: easy */
+  /* background-color: var(--app-heading-background-color) !important; */
+  color: beige; /* var(--app-heading-color) !important; */
+}
+
+.hike-cards .card-footer .badge.bg-primary {
+  /* badge for rating: moderate */
+  /* background-color: var(--app-heading-background-color) !important; */
+  color: beige; /* var(--app-heading-color) !important; */
+}
+
+.hike-cards .card-footer .badge.bg-danger {
+  /* badge for rating: hard */
+  /* background-color: var(--app-heading-background-color) !important; */
+  color: beige; /* var(--app-heading-color) !important; */
+}
 
 .hike-list .hike-list-stats {
   font-size: small;
@@ -106,61 +135,4 @@
 
 .hike-list > ul > li > * {
   margin-right: 5px;
-}
-
-/*-- Hike Journal Entries Styling --*/
-
-.hike-entry {
-  width: 100%;
-  padding: 0;
-  background-color: var(--app-content-background-color);
-  border: 2px solid var(--app-heading-background-color);
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-}
-
-.hike-entry-header {
-  background-color: var(--app-heading-background-color);
-  color: var(--app-heading-color);
-  font-weight: bold;
-  padding: 0 0.2em;
-  font-size: 1em;
-  border-bottom: 1px dashed var(--app-heading-color);
-  box-shadow: 0 2px 0 var(--app-heading-background-color);
-}
-
-.hike-entry-main {
-  background-color: var(--app-content-background-color);
-  border: 0;
-  text-align: start;
-  padding: 0.5em;
-  padding-top: 0.1em;
-}
-
-.hike-entry-main .hike-entry-name {
-  font-size: 1em;
-  font-weight: 900;
-}
-
-.hike-entry-sidebar
-{
-  background-color: var(--app-heading-background-color);
-  color: var(--app-heading-color);
-  padding: 0;
-  border: 0;
-  min-width: 5em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-align: center;
-  border-radius: 0 !important;
-}
-
-.hike-entry-date .hike-entry-sidebar-body {
-  font-size: 1.8em;
-  font-weight: 900;
-}
-
-.hike-entry-stats .hike-entry-sidebar-body {
-  font-size: 1.2em;
-  line-height: 2.25em;
-  font-weight: 900;
 }
