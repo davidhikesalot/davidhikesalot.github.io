@@ -97,12 +97,17 @@
   .hike-cards button.card:visited, 
   .hike-cards button.card:hover,
   .hike-cards button.card:active {
-    color: inherit;
+    color: red;
   }
 }
 
 .hike-cards .card-header {
   white-space: nowrap;
+}
+
+.hike-cards .card-header svg.position-absolute {
+  top: 10px;
+  right: 5px;
 }
 
 .hike-cards .card-body {

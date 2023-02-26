@@ -48,7 +48,7 @@ function JournalCard({ hike }: { hike: Hike }) {
       <Card.Header className="position-relative">
         <JournalDate hike={hike} />
         <FontAwesomeIcon
-          className="position-absolute top-0 end-0 mt-2 me-2"
+          className="fa-xs position-absolute"
           icon={faArrowUpRightFromSquare}
         />
       </Card.Header>
