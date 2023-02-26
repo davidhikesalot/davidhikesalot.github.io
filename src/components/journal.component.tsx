@@ -45,10 +45,10 @@ function JournalCard({ hike }: { hike: Hike }) {
   const gotoLink = () => (window.location.href = href);
   return (
     <button className="card app-card" onClick={() => gotoLink()}>
-      <Card.Header>
+      <Card.Header className="position-relative">
         <JournalDate hike={hike} />
         <FontAwesomeIcon
-          className="float-end small mt-1"
+          className="position-absolute top-0 end-0 mt-2 me-2"
           icon={faArrowUpRightFromSquare}
         />
       </Card.Header>
@@ -56,7 +56,9 @@ function JournalCard({ hike }: { hike: Hike }) {
         <Card.Title>{hike.get("hikename")}</Card.Title>
         <Card.Subtitle>{hike.parkAddress}</Card.Subtitle>
         <hr className="w-50 mx-auto p-0 m-2"></hr>
-        <Card.Text className="text-start">{hike.get("teaser")}</Card.Text>
+        {hike.get("teaser").length > 0 && (
+          <Card.Text className="text-start">{hike.get("teaser")}</Card.Text>
+        )}
       </Card.Body>
       <Card.Footer className="d-flex justify-content-around">
         <StatPill>{hike.stats.distance} mi</StatPill>

@@ -41,18 +41,18 @@ export function AppHeader() {
         <div className="card-body">
           <Navbar>
             <Nav className="me-auto">
-              <LinkContainer to="/hikes">
+              <LinkContainer to="hikes">
                 <Nav.Link>Hikes</Nav.Link>
               </LinkContainer>
               {/* <LinkContainer to="/parks">
                 <Nav.Link>Parks</Nav.Link>
               </LinkContainer> */}
-              <LinkContainer to="/plans">
+              <LinkContainer to="plans">
                 <Nav.Link>Plans</Nav.Link>
               </LinkContainer>
             </Nav>
             <Nav>
-              {/* <LinkContainer to="/challenge">
+              {/* <LinkContainer to="#/challenge">
                 <NavLinkWithTooltip tooltip="East Bay Parks Challenge">
                   <FontAwesomeIcon icon={faBullseye} />
                 </NavLinkWithTooltip>

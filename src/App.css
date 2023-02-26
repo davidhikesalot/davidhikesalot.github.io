@@ -47,6 +47,10 @@
   width: 100%;
 }
 
+.app-card .card-body {
+  width: 100%;
+}
+
 .app-card .card-footer {
   padding: 0.25em;
   font-size: 1em;
@@ -97,17 +101,17 @@
   }
 }
 
-
-
-
-
 .hike-cards .card-header {
   white-space: nowrap;
 }
 
-
 .hike-cards .card-body {
   font-size: smaller;
+}
+
+.hike-cards .card-body hr:last-child {
+  /* If there's nothing after the hr, then don't display it. */
+  display: none;
 }
 
 .hike-cards .card-footer .badge.bg-secondary {
