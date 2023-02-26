@@ -1,6 +1,8 @@
 import { Badge, Container, Row, Col, Card } from "react-bootstrap";
 import { Hike } from "../services/hikes.service";
 import { format as dateFormat, isBefore } from "date-fns";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
 function JournalDate({ hike }: { hike: Hike }) {
   if (!hike.date) {
@@ -45,6 +47,10 @@ function JournalCard({ hike }: { hike: Hike }) {
     <button className="card app-card" onClick={() => gotoLink()}>
       <Card.Header>
         <JournalDate hike={hike} />
+        <FontAwesomeIcon
+          className="float-end small mt-1"
+          icon={faArrowUpRightFromSquare}
+        />
       </Card.Header>
       <Card.Body>
         <Card.Title>{hike.get("hikename")}</Card.Title>
