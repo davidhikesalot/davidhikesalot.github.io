@@ -16,8 +16,8 @@ export class HikeStats {
     this._duration = cellToFloat("duration");
   }
 
-  get num_hikes(): string {
-    return this._toFixedLocaleString(this._num_hikes);
+  get num_hikes(): number {
+    return this._num_hikes;
   }
 
   get distance(): string {
@@ -118,12 +118,25 @@ export class Hike {
 
 export class Hikes {
   private _hikes: Hike[];
-  constructor(fetchJson: any, parks: Parks) {
+
+  static build(fetchJson: any, parks: Parks): Hikes {
+    const hikes = new Hikes();
+
     const rowHasHike = (row: IGoogleSheetRow) =>
       "hikename" in row && row["hikename"].trim();
-    this._hikes = fetchJson.rows
+    fetchJson.rows
       .filter(rowHasHike)
-      .map((row: IGoogleSheetRow) => new Hike(row, parks));
+      .map((row: IGoogleSheetRow) => hikes.addHike(new Hike(row, parks)));
+
+    return hikes;
+  }
+
+  constructor() {
+    this._hikes = [];
+  }
+
+  addHike(hike: Hike) {
+    this._hikes.push(hike);
   }
 
   get completed(): Hike[] {

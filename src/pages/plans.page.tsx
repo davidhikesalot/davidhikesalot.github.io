@@ -1,14 +1,5 @@
-import { useOutletContext } from "react-router-dom";
-import { HikeList } from "../components/hikelist.component";
-import { IPageLayoutProps } from "../layouts/page.layout";
+import { ParkDeck } from "../components/parkdeck.component";
 
 export function PlansPage(props: any) {
-  const ctx: IPageLayoutProps = useOutletContext();
-
-  return (
-    <>
-      <HikeList name="Next Hikes" hikes={ctx.data.hikes?.nexthikes} />
-      <HikeList name="Planned" hikes={ctx.data.hikes?.planned} />
-    </>
-  );
+  return <ParkDeck completed={false} />;
 }

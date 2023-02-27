@@ -1,0 +1,84 @@
+.park-deck {
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 0;
+    padding-right: 0;
+    max-width: unset;
+  }
+  
+  .park-deck .row {
+    column-gap: 0.5em;
+    justify-content: space-between;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  .park-deck .col {
+    margin-bottom: 0.5em;
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+  }
+  
+  .park-deck .card {
+    margin: 0;
+    padding: 0;
+    min-width: 250px;
+    min-height: 300px;
+  }
+  
+  @media only screen and (max-width: 600px) {
+    .park-deck .card {
+      min-height: auto;
+    }
+
+    .park-deck .col {
+      
+    }
+    
+  }
+  
+  .park-deck .card-header {
+    white-space: nowrap;
+  }
+  
+  .park-deck .card-header svg.position-absolute {
+    top: 10px;
+    right: 5px;
+  }
+  
+  .park-deck .card-body {
+    font-size: smaller;
+  }
+  
+  .park-deck .card-body hr:last-child {
+    /* If there's nothing after the hr, then don't display it. */
+    display: none;
+  }
+  
+  .park-deck .card-footer .badge.bg-secondary {
+    /* badge for stats */
+    background-color: var(--app-heading-background-color) !important;
+    color: beige; /* var(--app-heading-color) !important; */
+  }
+  
+  .park-deck .card-footer .badge.bg-success {
+    /* badge for rating: easy */
+    /* background-color: var(--app-heading-background-color) !important; */
+    color: beige; /* var(--app-heading-color) !important; */
+  }
+  
+  .park-deck .card-footer .badge.bg-primary {
+    /* badge for rating: moderate */
+    /* background-color: var(--app-heading-background-color) !important; */
+    color: beige; /* var(--app-heading-color) !important; */
+  }
+  
+  .park-deck .card-footer .badge.bg-danger {
+    /* badge for rating: hard */
+    /* background-color: var(--app-heading-background-color) !important; */
+    color: beige; /* var(--app-heading-color) !important; */
+  }
+  

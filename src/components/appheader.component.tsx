@@ -44,9 +44,9 @@ export function AppHeader() {
               <LinkContainer to="hikes">
                 <Nav.Link>Hikes</Nav.Link>
               </LinkContainer>
-              {/* <LinkContainer to="/parks">
+              <LinkContainer to="/parks">
                 <Nav.Link>Parks</Nav.Link>
-              </LinkContainer> */}
+              </LinkContainer>
               <LinkContainer to="plans">
                 <Nav.Link>Plans</Nav.Link>
               </LinkContainer>

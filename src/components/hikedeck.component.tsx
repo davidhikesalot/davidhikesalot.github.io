@@ -1,10 +1,12 @@
+import "./hikedeck.component.css";
 import { Badge, Container, Row, Col, Card } from "react-bootstrap";
 import { Hike } from "../services/hikes.service";
-import { format as dateFormat, isBefore } from "date-fns";
+import { format as dateFormat } from "date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { HikeListStats } from "../components/hikelist.component";
 
-function JournalDate({ hike }: { hike: Hike }) {
+function HikeDate({ hike }: { hike: Hike }) {
   if (!hike.date) {
     const hikeDateText = hike.get("hikedate");
     return hikeDateText ? <span>{hike.get("hikedate")}</span> : <></>;
@@ -36,7 +38,7 @@ function StatPill(props: any) {
   );
 }
 
-function JournalCard({ hike }: { hike: Hike }) {
+function HikeCard({ hike }: { hike: Hike }) {
   const href =
     hike.get("blogposturl") ||
     hike.get("photoalbumurl") ||
@@ -46,7 +48,7 @@ function JournalCard({ hike }: { hike: Hike }) {
   return (
     <button className="card app-card" onClick={() => gotoLink()}>
       <Card.Header className="position-relative">
-        <JournalDate hike={hike} />
+        <HikeDate hike={hike} />
         <FontAwesomeIcon
           className="fa-xs position-absolute"
           icon={faArrowUpRightFromSquare}
@@ -69,31 +71,32 @@ function JournalCard({ hike }: { hike: Hike }) {
   );
 }
 
-export function JournalCards({ hikes = [] }: { hikes?: Hike[] }) {
-  const sortOrder = (cond: Boolean) => (cond === true ? -1 : 1);
-  const compareHikeDates = (a: Hike, b: Hike) => {
-    if (a.date || b.date) {
-      return a.date && b.date
-        ? sortOrder(isBefore(b.date, a.date))
-        : sortOrder(!!a.date);
-    }
-
-    const aStr = a.get("hikedate");
-    const bStr = b.get("hikedate");
-    return aStr && bStr ? aStr.localeCompare(bStr) : sortOrder(!!aStr);
-  };
-
+export function HikeDeck({
+  title,
+  hikes = [],
+}: {
+  title: string;
+  hikes?: Hike[];
+}) {
   return (
-    <Container className="hike-cards">
-      <Row>
-        {hikes
-          .sort((a: Hike, b: Hike) => compareHikeDates(a, b))
-          .map((hike, index) => (
+    <>
+      <div className="app-card card mb-2 p-0">
+        <h4 className="card-header app-card-header-style">{title}</h4>
+        <div className="card-body p-2">
+          <small>
+            <HikeListStats hikes={hikes} />
+          </small>
+        </div>
+      </div>
+      <Container className="hike-deck">
+        <Row>
+          {hikes.map((hike, index) => (
             <Col>
-              <JournalCard key={`entry-${index}`} hike={hike} />
+              <HikeCard key={`hike-${index}`} hike={hike} />
             </Col>
           ))}
-      </Row>
-    </Container>
+        </Row>
+      </Container>
+    </>
   );
 }
