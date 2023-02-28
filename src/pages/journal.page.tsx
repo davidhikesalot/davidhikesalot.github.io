@@ -14,7 +14,8 @@ const compareHikeDates = (a: Hike, b: Hike) => {
 
   const aStr = a.get("hikedate");
   const bStr = b.get("hikedate");
-  return aStr && bStr ? aStr.localeCompare(bStr) : sortOrder(!!aStr);
+  // Reverse sort decades (2010s, ..., 1970s)
+  return aStr && bStr ? bStr.localeCompare(aStr) : sortOrder(!!aStr);
 };
 
 export function HikesPage(props: any) {
