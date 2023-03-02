@@ -1,3 +1,4 @@
+import "./carddeck.component.css";
 import { Container, Row, Col } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 
@@ -5,9 +6,11 @@ export function CardDeckHeader(props: any) {
   return (
     <Card className="app-card mb-2 p-0">
       <Card.Header>{props.title}</Card.Header>
-      <Card.Body className="p-2">
-        <small>{props.children}</small>
-      </Card.Body>
+      {props.children && (
+        <Card.Body className="p-2">
+          <small>{props.children}</small>
+        </Card.Body>
+      )}
     </Card>
   );
 }
@@ -21,5 +24,5 @@ export function CardDeck(props: any) {
 }
 
 export function CardDeckCard(props: any) {
-  return <Col>{props.children}</Col>;
+  return <Col {...props}>{props.children}</Col>;
 }

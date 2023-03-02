@@ -1,6 +1,6 @@
 import "./parkdeck.component.css";
 import { CardDeckHeader, CardDeck, CardDeckCard } from "./carddeck.component";
-import { Container, Row, Col, Card, Image } from "react-bootstrap";
+import { Container, Card, Image } from "react-bootstrap";
 import { Hike } from "../services/hikes.service";
 import { Parks } from "../services/parks.service";
 import { Park } from "../services/parks.service";
@@ -81,23 +81,25 @@ function ParkCard({
   return num_hikes_to_show === 0 ? (
     <></>
   ) : (
-    <Card className="app-card">
-      <Card.Header>{park.get("parkname")}</Card.Header>
-      <Card.Body className="d-flex flex-row">
-        <Container>
-          <ParkMap park={park} />
-        </Container>
-        <Container>
-          {nexthikes && hikelist("Next Hikes", park.hikes.nexthikes)}
-          {planned && hikelist("Planned", park.hikes.planned)}
-          {completed && hikelist("Completed", park.hikes.completed)}
-        </Container>
-      </Card.Body>
-      <Card.Footer className="d-flex justify-content-around text-nowrap">
-        <a href={park.get("parkurl")}>Park Website</a>
-        <a href={park.get("alltrailsparkurl")}>@AllTrails</a>
-      </Card.Footer>
-    </Card>
+    <CardDeckCard className="col-12">
+      <Card className="app-card">
+        <Card.Header>{park.get("parkname")}</Card.Header>
+        <Card.Body className="d-flex flex-row">
+          <Container>
+            <ParkMap park={park} />
+          </Container>
+          <Container>
+            {nexthikes && hikelist("Next Hikes", park.hikes.nexthikes)}
+            {planned && hikelist("Planned", park.hikes.planned)}
+            {completed && hikelist("Completed", park.hikes.completed)}
+          </Container>
+        </Card.Body>
+        <Card.Footer className="d-flex justify-content-around text-nowrap">
+          <a href={park.get("parkurl")}>Park Website</a>
+          <a href={park.get("alltrailsparkurl")}>@AllTrails</a>
+        </Card.Footer>
+      </Card>
+    </CardDeckCard>
   );
 }
 
@@ -107,15 +109,10 @@ export function ParkDeck(props: IParkDeckProps) {
 
   return (
     <>
-      <CardDeckHeader title={props.title}>
-        <ul className="m-0">
-          <li>Planned: ...</li>
-          <li>Completed: ...</li>
-        </ul>
-      </CardDeckHeader>
+      <CardDeckHeader title={props.title}></CardDeckHeader>
       <CardDeck>
         {parks.parks.map((park, index) => (
-          <ParkCard park={park} {...props} />
+          <ParkCard key={`carddeck-card-${index}`} park={park} {...props} />
         ))}
       </CardDeck>
     </>

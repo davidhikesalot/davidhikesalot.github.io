@@ -1,0 +1,83 @@
+.card-deck {
+    max-width: unset;
+  }
+  
+  .card-deck .row {
+    gap: 0.5em;
+    justify-content: space-between;
+  }
+  
+  .card-deck, .card-deck .row, .card-deck .row>* {
+    /* Override bootstrap's aggressive behaviour */
+    margin: unset;
+    padding: unset;
+  }
+  
+  .card-deck .col {
+    margin-bottom: 0.5em;
+  }
+  
+  .card-deck .card {
+    margin: 0;
+    padding: 0;
+    min-width: 250px;
+    min-height: fit-content;
+    height: 100%;
+  }
+  
+  @media only screen and (max-width: 600px) {
+  .card-deck .card {
+    min-height: auto;
+  }
+  
+  /* button text show as blue like links on mobile */
+  .card-deck .card:link, 
+  .card-deck .card:visited, 
+  .card-deck .card:hover,
+  .card-deck .card:active {
+    color: red;
+  }
+  }
+  
+  .card-deck .card-header {
+  white-space: nowrap;
+  }
+  
+  .card-deck .card-header svg.position-absolute {
+  top: 10px;
+  right: 5px;
+  }
+  
+  .card-deck .card-body {
+  font-size: smaller;
+  }
+  
+  .card-deck .card-body hr:last-child {
+  /* If there's nothing after the hr, then don't display it. */
+  display: none;
+  }
+  
+  .card-deck .card-footer .badge.bg-secondary {
+  /* badge for stats */
+  background-color: var(--app-heading-background-color) !important;
+  color: beige; /* var(--app-heading-color) !important; */
+  }
+  
+  .card-deck .card-footer .badge.bg-success {
+  /* badge for rating: easy */
+  /* background-color: var(--app-heading-background-color) !important; */
+  color: beige; /* var(--app-heading-color) !important; */
+  }
+  
+  .card-deck .card-footer .badge.bg-primary {
+  /* badge for rating: moderate */
+  /* background-color: var(--app-heading-background-color) !important; */
+  color: beige; /* var(--app-heading-color) !important; */
+  }
+  
+  .card-deck .card-footer .badge.bg-danger {
+  /* badge for rating: hard */
+  /* background-color: var(--app-heading-background-color) !important; */
+  color: beige; /* var(--app-heading-color) !important; */
+  }
+  

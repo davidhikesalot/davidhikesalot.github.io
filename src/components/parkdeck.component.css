@@ -2,6 +2,10 @@
   max-width: 100%;
 }
 
+.card-deck .card {
+  width: 100%;
+}
+
 .card-deck .card .card-footer {
   font-size: smaller;
 }
