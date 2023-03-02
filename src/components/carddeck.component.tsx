@@ -4,7 +4,7 @@ import { Card } from "react-bootstrap";
 
 export function CardDeckHeader(props: any) {
   return (
-    <Card className="app-card mb-2 p-0">
+    <Card className="mb-2 p-0">
       <Card.Header>{props.title}</Card.Header>
       {props.children && (
         <Card.Body className="p-2">

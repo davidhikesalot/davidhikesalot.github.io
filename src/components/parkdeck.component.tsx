@@ -84,7 +84,7 @@ function ParkCard({
     <></>
   ) : (
     <CardDeckCard className="col-12">
-      <Card className="app-card">
+      <Card>
         <Card.Header>{park.get("parkname")}</Card.Header>
         <Card.Body className="d-flex flex-row">
           <Container>

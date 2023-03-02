@@ -94,7 +94,7 @@ export function HikeList(props: any) {
   const hikes: Hike[] = props.hikes || [];
 
   return (
-    <div className="app-card hike-list card mb-2 p-0 border-0">
+    <div className="hike-list card mb-2 p-0 border-0">
       <h5 className="hike-list-name hike-entry-header card-header p-2">
         {name}
       </h5>

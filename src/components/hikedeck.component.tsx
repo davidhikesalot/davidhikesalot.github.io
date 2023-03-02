@@ -33,7 +33,7 @@ function HikeCard({ hike }: { hike: Hike }) {
     "";
   const gotoLink = () => (window.location.href = href);
   return (
-    <button className="card app-card" onClick={() => gotoLink()}>
+    <button className="card" onClick={() => gotoLink()}>
       <Card.Header className="position-relative">
         <HikeDate hike={hike} />
         <FontAwesomeIcon
