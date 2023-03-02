@@ -1,11 +1,45 @@
 import { Hike, HikeStats } from "../services/hikes.service";
 import { Badge } from "react-bootstrap";
 
-export function HikeListItemStats(props: any) {
+export function HikeListItemStats({ hike }: { hike: Hike }) {
   return (
-    <span>
-      ({props.hike.stats.distance}mi, {props.hike.stats.elevation}ft gain)
-    </span>
+    <small className="text-nowrap">
+      ({hike.stats.distance}mi / {hike.stats.elevation}' gain)
+    </small>
+  );
+}
+
+interface IStatBadgeProps {
+  hike: Hike;
+  bg?: string;
+}
+export function RatingBadge({ hike, bg = "secondary" }: IStatBadgeProps) {
+  const ratings: Record<string, string> = {
+    easy: "success",
+    moderate: "primary",
+    hard: "danger",
+  };
+  bg = ratings[hike.stats.rating] ?? bg;
+  return (
+    <Badge bg={bg} className="stat-badge-distance">
+      {hike.stats.rating}
+    </Badge>
+  );
+}
+
+export function DistanceBadge({ hike, bg = "secondary" }: IStatBadgeProps) {
+  return (
+    <Badge bg={bg} className="stat-badge-distance">
+      {hike.stats.distance} mi
+    </Badge>
+  );
+}
+
+export function ElevationBadge({ hike, bg = "secondary" }: IStatBadgeProps) {
+  return (
+    <Badge bg={bg} className="stat-badge-elevation">
+      {hike.stats.elevation}'
+    </Badge>
   );
 }
 

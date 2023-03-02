@@ -1,8 +1,10 @@
 import "./parkdeck.component.css";
+import { CardDeckHeader, CardDeck, CardDeckCard } from "./carddeck.component";
 import { Container, Row, Col, Card, Image } from "react-bootstrap";
 import { Hike } from "../services/hikes.service";
 import { Parks } from "../services/parks.service";
 import { Park } from "../services/parks.service";
+import { HikeListItemStats } from "./hikestats.component";
 import { useOutletContext } from "react-router-dom";
 import { IPageLayoutProps } from "../layouts/page.layout";
 import LazyLoad from "react-lazy-load";
@@ -15,6 +17,7 @@ interface IParkCardProps {
 }
 
 interface IParkDeckProps {
+  title?: string;
   nexthikes?: boolean;
   planned?: boolean;
   completed?: boolean;
@@ -56,8 +59,9 @@ function ParkCard({
           <ul>
             {hikes.map((hike: Hike, index: number) => {
               return (
-                <li>
-                  <a href={hike.get("mapurl")}>{hike.get("hikename")}</a>
+                <li className="lh-1 pb-1">
+                  <a href={hike.get("mapurl")}>{hike.get("hikename")}</a>{" "}
+                  <HikeListItemStats hike={hike} />
                 </li>
               );
             })}
@@ -77,25 +81,23 @@ function ParkCard({
   return num_hikes_to_show === 0 ? (
     <></>
   ) : (
-    <Col xs={12} sm={12} md={12} lg={6} xl={6} xxl={6}>
-      <Card className="app-card">
-        <Card.Header>{park.get("parkname")}</Card.Header>
-        <Card.Body className="d-flex flex-row">
-          <Container>
-            <ParkMap park={park} />
-          </Container>
-          <Container>
-            {nexthikes && hikelist("Next Hikes", park.hikes.nexthikes)}
-            {planned && hikelist("Planned", park.hikes.planned)}
-            {completed && hikelist("Completed", park.hikes.completed)}
-          </Container>
-        </Card.Body>
-        <Card.Footer className="d-flex justify-content-around text-nowrap">
-          <a href={park.get("parkurl")}>Park Website</a>
-          <a href={park.get("alltrailsparkurl")}>@AllTrails</a>
-        </Card.Footer>
-      </Card>
-    </Col>
+    <Card className="app-card">
+      <Card.Header>{park.get("parkname")}</Card.Header>
+      <Card.Body className="d-flex flex-row">
+        <Container>
+          <ParkMap park={park} />
+        </Container>
+        <Container>
+          {nexthikes && hikelist("Next Hikes", park.hikes.nexthikes)}
+          {planned && hikelist("Planned", park.hikes.planned)}
+          {completed && hikelist("Completed", park.hikes.completed)}
+        </Container>
+      </Card.Body>
+      <Card.Footer className="d-flex justify-content-around text-nowrap">
+        <a href={park.get("parkurl")}>Park Website</a>
+        <a href={park.get("alltrailsparkurl")}>@AllTrails</a>
+      </Card.Footer>
+    </Card>
   );
 }
 
@@ -105,13 +107,17 @@ export function ParkDeck(props: IParkDeckProps) {
 
   return (
     <>
-      <Container className="card-deck">
-        <Row>
-          {parks.parks.map((park, index) => (
-            <ParkCard park={park} {...props} />
-          ))}
-        </Row>
-      </Container>
+      <CardDeckHeader title={props.title}>
+        <ul className="m-0">
+          <li>Planned: ...</li>
+          <li>Completed: ...</li>
+        </ul>
+      </CardDeckHeader>
+      <CardDeck>
+        {parks.parks.map((park, index) => (
+          <ParkCard park={park} {...props} />
+        ))}
+      </CardDeck>
     </>
   );
 }

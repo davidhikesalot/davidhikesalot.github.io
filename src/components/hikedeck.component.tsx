@@ -1,9 +1,15 @@
-import { Badge, Container, Row, Col, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { Hike } from "../services/hikes.service";
 import { format as dateFormat } from "date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
-import { HikeListStats } from "../components/hikestats.component";
+import { CardDeckHeader, CardDeck, CardDeckCard } from "./carddeck.component";
+import {
+  HikeListStats,
+  DistanceBadge,
+  ElevationBadge,
+  RatingBadge,
+} from "../components/hikestats.component";
 
 function HikeDate({ hike }: { hike: Hike }) {
   if (!hike.date) {
@@ -16,24 +22,6 @@ function HikeDate({ hike }: { hike: Hike }) {
       {dateFormat(hike.date, "EEEE")} {dateFormat(hike.date, "MMM")}{" "}
       {dateFormat(hike.date, "dd")}, {dateFormat(hike.date, "yyyy")}
     </time>
-  );
-}
-
-function RatingPill({ rating }: { rating: string }) {
-  const ratings: Record<string, string> = {
-    easy: "success",
-    moderate: "primary",
-    hard: "danger",
-  };
-  let bg = ratings[rating] ?? "secondary";
-  return <Badge bg={bg}>{rating}</Badge>;
-}
-
-function StatPill(props: any) {
-  return (
-    <Badge {...props} bg="secondary">
-      {props.children}
-    </Badge>
   );
 }
 
@@ -62,9 +50,9 @@ function HikeCard({ hike }: { hike: Hike }) {
         )}
       </Card.Body>
       <Card.Footer className="d-flex justify-content-around">
-        <StatPill>{hike.stats.distance} mi</StatPill>
-        <RatingPill rating={hike.stats.rating} />
-        <StatPill>{hike.stats.elevation}'</StatPill>
+        <DistanceBadge hike={hike} />
+        <RatingBadge hike={hike} />
+        <ElevationBadge hike={hike} />
       </Card.Footer>
     </button>
   );
@@ -79,23 +67,16 @@ export function HikeDeck({
 }) {
   return (
     <>
-      <div className="app-card card mb-2 p-0">
-        <h4 className="card-header app-card-header-style">{title}</h4>
-        <div className="card-body p-2">
-          <small>
-            <HikeListStats hikes={hikes} />
-          </small>
-        </div>
-      </div>
-      <Container className="card-deck">
-        <Row>
-          {hikes.map((hike, index) => (
-            <Col>
-              <HikeCard key={`hike-${index}`} hike={hike} />
-            </Col>
-          ))}
-        </Row>
-      </Container>
+      <CardDeckHeader title={title}>
+        <HikeListStats hikes={hikes} />
+      </CardDeckHeader>
+      <CardDeck>
+        {hikes.map((hike, index) => (
+          <CardDeckCard>
+            <HikeCard key={`hike-${index}`} hike={hike} />
+          </CardDeckCard>
+        ))}
+      </CardDeck>
     </>
   );
 }
