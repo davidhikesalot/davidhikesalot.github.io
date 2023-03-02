@@ -6,6 +6,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faBullseye } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
+import { faHiking } from "@fortawesome/free-solid-svg-icons";
 
 interface INavLinkWithTooltipProps {
   href?: string;
@@ -41,6 +42,9 @@ export function AppHeader() {
         <div className="card-body">
           <Navbar>
             <Nav className="me-auto">
+              <Navbar.Brand>
+                <FontAwesomeIcon icon={faHiking} />
+              </Navbar.Brand>
               <LinkContainer to="hikes">
                 <Nav.Link>Hikes</Nav.Link>
               </LinkContainer>

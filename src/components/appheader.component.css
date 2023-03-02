@@ -17,10 +17,18 @@ header .navbar {
     padding: 0;
 }
 
+header .navbar .navbar-brand {
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 1.5em;
+    text-align: center;
+    color: var(--app-heading-color)
+}
+
 header .navbar .nav-link {
     color: #999999 !important;
 } 
 
-header .navbar .nav-link:not(:last-child) {
-    border-right: 1px solid #999999;
+header .navbar .nav-link {
+    border-left: 1px solid #999999;
 }
