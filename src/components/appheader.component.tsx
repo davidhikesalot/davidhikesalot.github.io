@@ -1,4 +1,4 @@
-import "./appheader.component.css";
+import "./appheader.component.scss";
 import { Navbar, Nav, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { ReactNode } from "react";
 import { LinkContainer } from "react-router-bootstrap";

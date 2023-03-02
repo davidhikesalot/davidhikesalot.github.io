@@ -94,6 +94,11 @@
 
     .card-body {
         width: 100%;
+        &:has(.container) {
+            /* <Container> has it's own side padding */
+            padding-left: 0;
+            padding-right: 0;
+        }
     }
 
     .card-footer {
