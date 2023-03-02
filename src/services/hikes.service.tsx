@@ -30,12 +30,13 @@ export class HikeStats {
 
   get difficulty(): string {
     const gainPerMile = this._elevation / this._distance;
-    if (this._distance < 2.5 || gainPerMile < 100) {
+    // Easy is < 2.5 miles or < 100' gain per mile unless it's over 8.0 miles (then it's not easy)
+    if (this._distance < 2.5 || (gainPerMile < 100 && this._distance < 8.0)) {
       return "easy";
-    } else if (gainPerMile < 250) {
-      return "moderate";
-    } else {
+    } else if (gainPerMile > 250) {
       return "hard";
+    } else {
+      return "moderate";
     }
   }
 
