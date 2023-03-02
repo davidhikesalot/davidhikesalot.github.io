@@ -33,11 +33,20 @@ function ParkMap({ park }: { park: Park }) {
       className="park-map"
     >
       <LazyLoad>
-        <Image
-          alt=""
-          src={mapIdToUrl(park.get("trailshikedmobileid"))}
-          srcSet={mapIdToUrl(park.get("trailshikedwebid")) + " 768w"}
-        />
+        <picture>
+          <source
+            media="(max-width: 700px)"
+            srcSet={mapIdToUrl(park.get("trailshikedmobileid"))}
+          />
+          <source
+            media="(min-width: 701px)"
+            srcSet={mapIdToUrl(park.get("trailshikedwebid"))}
+          />
+          <Image
+            alt={park.get("parkname") + "Trail Map"}
+            src={mapIdToUrl(park.get("trailshikedmobileid"))}
+          />
+        </picture>
       </LazyLoad>
     </a>
   );
