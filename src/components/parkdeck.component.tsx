@@ -27,7 +27,7 @@ function ParkMap({ park }: { park: Park }) {
   const mapIdToUrl = (id: string) => `https://drive.google.com/uc?id=${id}`;
   return (
     <LazyLoad>
-      <picture>
+      <picture className="park-map">
         <source
           media="(max-width: 700px)"
           srcSet={mapIdToUrl(park.get("trailshikedmobileid"))}
