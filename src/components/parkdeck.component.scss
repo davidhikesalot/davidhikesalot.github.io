@@ -10,7 +10,7 @@
   }
 }
 
-@media only screen and (max-width: var(--app-media-mobile-max-width)) {
+@media only screen and (max-width: 600px) {
   .card-deck .card {
     min-height: auto;
 

@@ -4,8 +4,7 @@ import { ReactNode } from "react";
 import { LinkContainer } from "react-router-bootstrap";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faBullseye } from "@fortawesome/free-solid-svg-icons";
-import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
+import { faFacebookF, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faHiking } from "@fortawesome/free-solid-svg-icons";
 
 interface INavLinkWithTooltipProps {
@@ -56,16 +55,17 @@ export function AppHeader() {
               </LinkContainer>
             </Nav>
             <Nav>
-              {/* <LinkContainer to="#/challenge">
-                <NavLinkWithTooltip tooltip="East Bay Parks Challenge">
-                  <FontAwesomeIcon icon={faBullseye} />
-                </NavLinkWithTooltip>
-              </LinkContainer> */}
               <NavLinkWithTooltip
                 tooltip="David Hikes a Lot Facebook Page"
                 href="https://www.facebook.com/davidhikesalot"
               >
                 <FontAwesomeIcon icon={faFacebookF} />
+              </NavLinkWithTooltip>
+              <NavLinkWithTooltip
+                tooltip="View source on GitHub"
+                href="https://github.com/davidhikesalot/davidhikesalot.github.io/tree/main"
+              >
+                <FontAwesomeIcon icon={faGithub} size="lg" />
               </NavLinkWithTooltip>
             </Nav>
           </Navbar>
