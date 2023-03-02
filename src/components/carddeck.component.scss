@@ -58,15 +58,15 @@
         }
     }
 
-    /* TODL: Fix using <button class="card" on mobile messes up overall link text */
-    // > * {
-    //     &:link,
-    //     &:visited,
-    //     &:hover,
-    //     &:active {
-    //         color: red;
-    //     }
-    // }
+    /* Using <button class="card" on mobile messes up overall link text */
+    > * {
+        a:link,
+        a:visited,
+        a:hover,
+        a:active {
+            color: var(--app-header-background-color);
+        }
+    }
 }
 
 .card {
@@ -114,13 +114,5 @@
 @media only screen and (max-width: 600px) {
     .card-deck .card {
         min-height: auto;
-
-        /* button text show as blue like links on mobile */
-        &:link,
-        &:visited,
-        &:hover,
-        &:active {
-            color: red;
-        }
     }
 }
