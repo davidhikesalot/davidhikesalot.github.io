@@ -13,16 +13,16 @@ interface IStatBadgeProps {
   hike: Hike;
   bg?: string;
 }
-export function RatingBadge({ hike, bg = "secondary" }: IStatBadgeProps) {
+export function DifficultyBadge({ hike, bg = "secondary" }: IStatBadgeProps) {
   const ratings: Record<string, string> = {
     easy: "success",
     moderate: "primary",
     hard: "danger",
   };
-  bg = ratings[hike.stats.rating] ?? bg;
+  bg = ratings[hike.stats.difficulty] ?? bg;
   return (
     <Badge bg={bg} className="stat-badge-distance">
-      {hike.stats.rating}
+      {hike.stats.difficulty}
     </Badge>
   );
 }

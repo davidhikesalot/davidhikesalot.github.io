@@ -28,7 +28,7 @@ export class HikeStats {
     return this._toFixedLocaleString(this._elevation);
   }
 
-  get rating(): string {
+  get difficulty(): string {
     const gainPerMile = this._elevation / this._distance;
     if (this._distance < 2.5 || gainPerMile < 100) {
       return "easy";

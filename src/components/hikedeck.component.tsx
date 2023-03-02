@@ -6,9 +6,9 @@ import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { CardDeckHeader, CardDeck, CardDeckCard } from "./carddeck.component";
 import {
   HikeListStats,
+  DifficultyBadge,
   DistanceBadge,
   ElevationBadge,
-  RatingBadge,
 } from "../components/hikestats.component";
 
 function HikeDate({ hike }: { hike: Hike }) {
@@ -52,7 +52,7 @@ function HikeCard({ hike }: { hike: Hike }) {
       </Card.Body>
       <Card.Footer className="d-flex justify-content-around">
         <DistanceBadge hike={hike} />
-        <RatingBadge hike={hike} />
+        <DifficultyBadge hike={hike} />
         <ElevationBadge hike={hike} />
       </Card.Footer>
     </Card>
