@@ -27,20 +27,27 @@ function ParkMap({ park }: { park: Park }) {
   const mapIdToUrl = (id: string) => `https://drive.google.com/uc?id=${id}`;
   return (
     <LazyLoad>
-      <picture className="park-map">
-        <source
-          media="(max-width: 700px)"
-          srcSet={mapIdToUrl(park.get("trailshikedmobileid"))}
-        />
-        <source
-          media="(min-width: 701px)"
-          srcSet={mapIdToUrl(park.get("trailshikedwebid"))}
-        />
-        <Image
-          alt={park.get("parkname") + " Trail Map"}
-          src={mapIdToUrl(park.get("trailshikedmobileid"))}
-        />
-      </picture>
+      <a
+        href={mapIdToUrl(park.get("trailshikedid"))}
+        target="_blank"
+        rel="noreferrer"
+        className="park-map"
+      >
+        <picture className="park-map">
+          <source
+            media="(max-width: 700px)"
+            srcSet={mapIdToUrl(park.get("trailshikedmobileid"))}
+          />
+          <source
+            media="(min-width: 701px)"
+            srcSet={mapIdToUrl(park.get("trailshikedwebid"))}
+          />
+          <Image
+            alt={park.get("parkname") + " Trail Map"}
+            src={mapIdToUrl(park.get("trailshikedmobileid"))}
+          />
+        </picture>
+      </a>
     </LazyLoad>
   );
 }
