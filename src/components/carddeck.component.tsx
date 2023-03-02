@@ -1,4 +1,4 @@
-import "./carddeck.component.css";
+import "./carddeck.component.scss";
 import { Container, Row, Col } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 

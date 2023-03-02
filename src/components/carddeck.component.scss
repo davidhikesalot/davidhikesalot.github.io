@@ -1,0 +1,126 @@
+.card-deck {
+    max-width: unset;
+    .row {
+        gap: 0.5em;
+        justify-content: space-between;
+    }
+    .col {
+        margin-bottom: 0.5em;
+    }
+    .card {
+        margin: 0;
+        padding: 0;
+        min-width: 250px;
+        min-height: fit-content;
+        height: 100%;
+
+        .card-header {
+            white-space: nowrap;
+            svg.position-absolute {
+                top: 10px;
+                right: 5px;
+            }
+        }
+
+        .card-body {
+            font-size: smaller;
+
+            hr:last-child {
+                /* If there's nothing after the hr, then don't display it. */
+                display: none;
+            }
+        }
+    }
+
+    .badge {
+        &.bg-secondary {
+            /* badge for stats */
+            background-color: var(--app-heading-background-color) !important;
+            color: beige; /* var(--app-heading-color) !important; */
+        }
+
+        &.bg-success {
+            /* badge for rating: easy */
+            /* background-color: var(--app-heading-background-color) !important; */
+            color: beige; /* var(--app-heading-color) !important; */
+        }
+
+        &.bg-primary {
+            /* badge for rating: moderate */
+            /* background-color: var(--app-heading-background-color) !important; */
+            color: beige; /* var(--app-heading-color) !important; */
+        }
+
+        &.bg-danger {
+            /* badge for rating: hard */
+            /* background-color: var(--app-heading-background-color) !important; */
+            color: beige; /* var(--app-heading-color) !important; */
+        }
+    }
+
+    /* TODL: Fix using <button class="card" on mobile messes up overall link text */
+    // > * {
+    //     &:link,
+    //     &:visited,
+    //     &:hover,
+    //     &:active {
+    //         color: red;
+    //     }
+    // }
+}
+
+.card {
+    width: 100%;
+    padding: 0;
+    background-color: var(--app-content-background-color);
+    border: 2px solid var(--app-heading-background-color);
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+
+    .card-header {
+        background-color: var(--app-heading-background-color);
+        color: var(--app-heading-color);
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        font-weight: bold;
+        padding: 0.25em;
+        font-size: 1.1em;
+        width: 100%;
+
+        &:has(.card-body) {
+            border-bottom: 1px dashed var(--app-heading-color);
+            box-shadow: 0 2px 0 var(--app-heading-background-color);
+        }
+    }
+
+    .card-body {
+        width: 100%;
+    }
+
+    .card-footer {
+        padding: 0.25em;
+        font-size: 1em;
+        width: 100%;
+    }
+}
+
+.card-deck,
+.card-deck .row,
+.card-deck .row > * {
+    /* Override bootstrap's aggressive behaviour */
+    margin: unset;
+    padding: unset;
+}
+
+@media only screen and (max-width: 600px) {
+    .card-deck .card {
+        min-height: auto;
+
+        /* button text show as blue like links on mobile */
+        &:link,
+        &:visited,
+        &:hover,
+        &:active {
+            color: red;
+        }
+    }
+}

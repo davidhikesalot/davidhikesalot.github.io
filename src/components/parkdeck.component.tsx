@@ -1,4 +1,4 @@
-import "./parkdeck.component.css";
+import "./parkdeck.component.scss";
 import { CardDeckHeader, CardDeck, CardDeckCard } from "./carddeck.component";
 import { Container, Card, Image } from "react-bootstrap";
 import { Hike } from "../services/hikes.service";
