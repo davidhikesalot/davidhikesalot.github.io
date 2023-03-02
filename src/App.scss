@@ -1,27 +1,28 @@
 :root {
   --app-heading-background-color: #504741;
-  --app-heading-color: #BBBBBB;
-  --app-content-background-color: #E1D6CE;
+  --app-heading-color: #bbbbbb;
+  --app-content-background-color: #e1d6ce;
+  --app-media-mobile-max_width: 700px;
 }
 
 .app {
   max-width: 1280px;
   margin: 0px auto 0px;
   padding: 0px 48px;
-}
 
-@media only screen and (max-width: 600px) {
-  .app {
-    padding: 0px 32px;
+  #content {
+    margin-top: 10px;
+    min-height: 90vh;
+    display: none;
+  }
+
+  &.loaded #content {
+    display: block;
   }
 }
 
-#content {
-  margin-top: 10px;
-  min-height: 90vh;
-  display: none;
-}
-
-.app.loaded #content {
-  display: block;
+@media only screen and (max-width: var(--app-media-mobile-max-width)) {
+  .app {
+    padding: 0px 32px;
+  }
 }
