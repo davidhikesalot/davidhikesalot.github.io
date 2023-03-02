@@ -30,9 +30,9 @@ export class HikeStats {
 
   get rating(): string {
     const gainPerMile = this._elevation / this._distance;
-    if (gainPerMile < 50) {
+    if (this._distance < 2.5 || gainPerMile < 100) {
       return "easy";
-    } else if (gainPerMile < 200) {
+    } else if (gainPerMile < 250) {
       return "moderate";
     } else {
       return "hard";
