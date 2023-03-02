@@ -43,7 +43,7 @@ function ParkMap({ park }: { park: Park }) {
             srcSet={mapIdToUrl(park.get("trailshikedwebid"))}
           />
           <Image
-            alt={park.get("parkname") + "Trail Map"}
+            alt={park.get("parkname") + " Trail Map"}
             src={mapIdToUrl(park.get("trailshikedmobileid"))}
           />
         </picture>
