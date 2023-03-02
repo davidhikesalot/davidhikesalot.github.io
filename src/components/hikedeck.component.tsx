@@ -31,17 +31,18 @@ function HikeCard({ hike }: { hike: Hike }) {
     hike.get("photoalbumurl") ||
     hike.get("mapurl") ||
     "";
-  const gotoLink = () => (window.location.href = href);
   return (
-    <button className="card" onClick={() => gotoLink()}>
-      <Card.Header className="position-relative">
-        <HikeDate hike={hike} />
-        <FontAwesomeIcon
-          className="fa-xs position-absolute"
-          icon={faArrowUpRightFromSquare}
-        />
-      </Card.Header>
-      <Card.Body>
+    <Card>
+      <a href={href} className="text-decoration-none">
+        <Card.Header className="text-center position-relative">
+          <HikeDate hike={hike} />
+          <FontAwesomeIcon
+            className="fa-xs position-absolute"
+            icon={faArrowUpRightFromSquare}
+          />
+        </Card.Header>
+      </a>
+      <Card.Body className="text-center">
         <Card.Title>{hike.get("hikename")}</Card.Title>
         <Card.Subtitle>{hike.parkAddress}</Card.Subtitle>
         <hr className="w-50 mx-auto p-0 m-2"></hr>
@@ -54,7 +55,7 @@ function HikeCard({ hike }: { hike: Hike }) {
         <RatingBadge hike={hike} />
         <ElevationBadge hike={hike} />
       </Card.Footer>
-    </button>
+    </Card>
   );
 }
 
