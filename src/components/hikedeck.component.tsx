@@ -1,10 +1,9 @@
-import "./hikedeck.component.css";
 import { Badge, Container, Row, Col, Card } from "react-bootstrap";
 import { Hike } from "../services/hikes.service";
 import { format as dateFormat } from "date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
-import { HikeListStats } from "../components/hikelist.component";
+import { HikeListStats } from "../components/hikestats.component";
 
 function HikeDate({ hike }: { hike: Hike }) {
   if (!hike.date) {
@@ -88,7 +87,7 @@ export function HikeDeck({
           </small>
         </div>
       </div>
-      <Container className="hike-deck">
+      <Container className="card-deck">
         <Row>
           {hikes.map((hike, index) => (
             <Col>

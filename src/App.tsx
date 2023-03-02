@@ -12,7 +12,6 @@ export default function App() {
   const props: IPageLayoutProps = { data };
 
   useEffect(() => {
-    console.log("here");
     fetchSiteData().then((siteData: ISiteData) => {
       setData((prev) => ({ ...siteData }));
       setIsLoaded((prev) => true);
