@@ -2,58 +2,54 @@ import { IGoogleSheetRow } from "./data.service";
 import { Park, Parks } from "./parks.service";
 
 export class HikeStats {
-  _num_hikes: number;
+  _status: string;
   _distance: number;
   _elevation: number;
-  _duration: number;
-  constructor(row: IGoogleSheetRow | undefined = undefined) {
-    this._num_hikes = row ? 1 : 0;
-
-    const cellToFloat = (col: string) => parseFloat((row || {})[col]) || 0.0;
-
-    this._distance = cellToFloat("distance");
-    this._elevation = cellToFloat("elevation");
-    this._duration = cellToFloat("duration");
+  _difficulty: string;
+  constructor(hike: Hike) {
+    this._status = hike.get("hikestatus");
+    this._distance = hike.getFloat("distance");
+    this._elevation = hike.getFloat("elevation");
+    this._difficulty = this._calculateDifficulty(hike);
   }
 
-  get num_hikes(): number {
-    return this._num_hikes;
+  get status(): string {
+    return this._status;
   }
 
-  get distance(): string {
-    return this._toFixedLocaleString(this._distance, 1);
+  get distance(): number {
+    return this._distance;
   }
 
-  get elevation(): string {
-    return this._toFixedLocaleString(this._elevation);
+  get elevation(): number {
+    return this._elevation;
   }
 
   get difficulty(): string {
-    const gainPerMile = this._elevation / this._distance;
-    // Easy is < 2.5 miles or < 100' gain per mile unless it's over 8.0 miles (then it's not easy)
-    if (this._distance < 2.5 || (gainPerMile < 100 && this._distance < 8.0)) {
-      return "easy";
-    } else if (gainPerMile > 250) {
-      return "hard";
-    } else {
-      return "moderate";
-    }
+    return this._difficulty;
   }
 
-  get duration(): string {
-    return this._toFixedLocaleString(this._duration);
+  _calculateDifficulty(hike: Hike): string {
+    const difficulties = ["easy", "moderate", "hard"];
+    const calculateDifficulty = () => {
+      const gainPerMile = this._elevation / this._distance;
+      // Easy is < 2.5 miles or < 100' gain per mile unless it's over 8.0 miles (then it's not easy)
+      if (this._distance < 2.5 || (gainPerMile < 100 && this._distance < 8.0)) {
+        return "easy";
+      } else if (gainPerMile > 250) {
+        return "hard";
+      } else {
+        return "moderate";
+      }
+    };
+
+    let difficulty = hike.get("difficulty");
+    return difficulty in difficulties ? difficulty : calculateDifficulty();
   }
 
-  add(more_stats: HikeStats) {
-    this._num_hikes += more_stats._num_hikes;
-    this._distance += more_stats._distance;
-    this._elevation += more_stats._elevation;
-    this._duration += more_stats._duration;
-  }
-
-  _toFixedLocaleString(num: number, fixed: number = 0): string {
-    return parseFloat(num.toFixed(fixed)).toLocaleString();
-  }
+  // _toFixedLocaleString(num: number, fixed: number = 0): string {
+  //   return parseFloat(num.toFixed(fixed)).toLocaleString();
+  // }
 }
 
 export class Hike {
@@ -67,7 +63,7 @@ export class Hike {
     if (this._date.toString() === "Invalid Date") {
       this._date = undefined;
     }
-    this._stats = new HikeStats(row);
+    this._stats = new HikeStats(this);
     this._park = parks.find(this.get("parkname"));
     if (this._park) {
       this._park.addHike(this);
@@ -114,6 +110,10 @@ export class Hike {
       return "";
     }
     return this._hike[field];
+  }
+
+  getFloat(field: string): number {
+    return parseFloat(this.get(field)) || 0.0;
   }
 }
 

@@ -4,25 +4,18 @@ import { Hikes, Hike, HikeStats } from "./hikes.service";
 export class Park {
   private _park: IGoogleSheetRow;
   private _hikes: Hikes;
-  private _stats: HikeStats;
 
   constructor(row: IGoogleSheetRow) {
     this._park = row;
     this._hikes = new Hikes();
-    this._stats = new HikeStats();
   }
 
   get hikes() {
     return this._hikes;
   }
 
-  get stats() {
-    return this._stats;
-  }
-
   addHike(hike: Hike) {
     this.hikes.addHike(hike);
-    this.stats.add(hike.stats);
   }
 
   get(field: string): string {

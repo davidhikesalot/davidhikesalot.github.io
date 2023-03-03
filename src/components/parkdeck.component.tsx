@@ -87,7 +87,12 @@ function ParkCard({
               return (
                 <li key={index} className={iconClass}>
                   <span className={`"fa-li`}>
-                    <FontAwesomeIcon icon={icon} listItem fixedWidth />
+                    <FontAwesomeIcon
+                      icon={icon}
+                      className="fa-sharp"
+                      listItem
+                      fixedWidth
+                    />
                   </span>
                   <span className="hike-info">
                     <a href={hike.get("mapurl")}>{hike.get("hikename")}</a>{" "}
