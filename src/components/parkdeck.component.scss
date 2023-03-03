@@ -8,6 +8,31 @@
   .card-footer {
     font-size: smaller;
   }
+
+  .card-body {
+    ul.hike-list {
+      margin-left: 4px;
+      li {
+        line-height: 1.1;
+        padding-top: 0.25em;
+        svg.svg-inline--fa {
+          margin-left: 9px;
+        }
+        &.easy-hike .fa-li {
+          color: green;
+        }
+        &.moderate-hike .fa-li {
+          color: blue;
+        }
+        &.hard-hike .fa-li {
+          color: black;
+        }
+        &.unknown-hike .fa-li {
+          color: green;
+        }
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 600px) {

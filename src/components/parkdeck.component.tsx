@@ -8,6 +8,13 @@ import { HikeListItemStats } from "./hikestats.component";
 import { useOutletContext } from "react-router-dom";
 import { IPageLayoutProps } from "../layouts/page.layout";
 import LazyLoad from "react-lazy-load";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCircle,
+  faDiamond,
+  faSquare,
+  IconDefinition,
+} from "@fortawesome/free-solid-svg-icons";
 
 interface IParkCardProps {
   park: Park;
@@ -64,18 +71,33 @@ function ParkCard({
     ) : (
       <>
         <Card.Subtitle>{title}</Card.Subtitle>
-        <Card.Text>
-          <ul>
+        <Container>
+          <ul className="fa-ul hike-list">
             {hikes.map((hike: Hike, index: number) => {
+              const icons: Record<string, IconDefinition> = {
+                easy: faCircle,
+                moderate: faSquare,
+                hard: faDiamond,
+              };
+              let icon = icons[hike.stats.difficulty] ?? undefined;
+              const iconClass = `${
+                icon ? hike.stats.difficulty : "unknown"
+              }-hike`;
+
               return (
-                <li className="lh-1 pb-1">
-                  <a href={hike.get("mapurl")}>{hike.get("hikename")}</a>{" "}
-                  <HikeListItemStats hike={hike} />
+                <li key={index} className={iconClass}>
+                  <span className={`"fa-li`}>
+                    <FontAwesomeIcon icon={icon} listItem fixedWidth />
+                  </span>
+                  <span className="hike-info">
+                    <a href={hike.get("mapurl")}>{hike.get("hikename")}</a>{" "}
+                    <HikeListItemStats hike={hike} />
+                  </span>
                 </li>
               );
             })}
           </ul>
-        </Card.Text>
+        </Container>
       </>
     );
   };
