@@ -13,10 +13,11 @@
     ul.hike-list {
       margin-left: 4px;
       li {
-        line-height: 1.1;
-        padding-top: 0.25em;
-        svg.svg-inline--fa {
-          margin-left: 9px;
+        padding-bottom: 0.4em;
+        line-height: 1;
+        .fa-li {
+          top: 0;
+          left: -10px;
         }
         &.easy-hike .fa-li {
           color: green;
@@ -29,6 +30,13 @@
         }
         &.unknown-hike .fa-li {
           color: green;
+        }
+
+        .hike-subtext {
+          white-space: nowrap;
+          .hike-map-link {
+            padding-left: 0.25em;
+          }
         }
       }
     }

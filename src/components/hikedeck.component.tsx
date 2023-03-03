@@ -9,7 +9,7 @@ import {
   DifficultyBadge,
   DistanceBadge,
   ElevationBadge,
-} from "../components/hikestats.component";
+} from "./hikeinfo.component";
 
 function HikeDate({ hike }: { hike: Hike }) {
   if (!hike.date) {

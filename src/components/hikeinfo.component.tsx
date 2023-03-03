@@ -1,11 +1,36 @@
 import { Hike, HikeStats } from "../services/hikes.service";
 import { Badge } from "react-bootstrap";
+import { ReactNode } from "react";
+import { ExternalLink } from "./utils.component";
+
+interface IHikeLinkProps {
+  hike: Hike;
+  children: ReactNode;
+}
+export function HikeMapLink({ hike, children }: IHikeLinkProps) {
+  /* Show map icon with link if hike has map url */
+  const mapUrl = hike.get("mapurl") || "";
+  return (
+    <ExternalLink className="hike-map-link" href={mapUrl}>
+      {children}
+    </ExternalLink>
+  );
+}
+export function HikePostLink({ hike, children }: IHikeLinkProps) {
+  /* Show map icon with link if hike has post url */
+  const postUrl = hike.get("blogposturl") || hike.get("photoalbumurl") || "";
+  return (
+    <ExternalLink className="hike-map-link" href={postUrl}>
+      {children}
+    </ExternalLink>
+  );
+}
 
 export function HikeListItemStats({ hike }: { hike: Hike }) {
   return (
-    <small className="text-nowrap">
+    <span className="hike-stats">
       ({hike.stats.distance}mi / {hike.stats.elevation}' gain)
-    </small>
+    </span>
   );
 }
 

@@ -4,7 +4,11 @@ import { Container, Card, Image } from "react-bootstrap";
 import { Hike } from "../services/hikes.service";
 import { Parks } from "../services/parks.service";
 import { Park } from "../services/parks.service";
-import { HikeListItemStats } from "./hikestats.component";
+import {
+  HikeListItemStats,
+  HikeMapLink,
+  HikePostLink,
+} from "./hikeinfo.component";
 import { useOutletContext } from "react-router-dom";
 import { IPageLayoutProps } from "../layouts/page.layout";
 import LazyLoad from "react-lazy-load";
@@ -15,7 +19,8 @@ import {
   faSquare,
   IconDefinition,
 } from "@fortawesome/free-solid-svg-icons";
-
+import { ExternalLink } from "./utils.component";
+import { faMap } from "@fortawesome/free-regular-svg-icons";
 interface IParkCardProps {
   park: Park;
   nexthikes?: boolean;
@@ -80,18 +85,26 @@ function ParkCard({
                 hard: faDiamond,
               };
               let icon = icons[hike.stats.difficulty] ?? undefined;
+
               const iconClass = `${
                 icon ? hike.stats.difficulty : "unknown"
               }-hike`;
 
               return (
                 <li key={index} className={iconClass}>
-                  <span className={`"fa-li`}>
+                  <span className="fa-li">
                     <FontAwesomeIcon icon={icon} listItem fixedWidth />
                   </span>
-                  <span className="hike-info">
-                    <a href={hike.get("mapurl")}>{hike.get("hikename")}</a>{" "}
+                  <HikePostLink hike={hike}>
+                    {hike.get("hikename")}
+                  </HikePostLink>{" "}
+                  <span className="hike-subtext">
                     <HikeListItemStats hike={hike} />
+                    {hike.get("mapurl") && (
+                      <HikeMapLink hike={hike}>
+                        <FontAwesomeIcon icon={faMap} />
+                      </HikeMapLink>
+                    )}
                   </span>
                 </li>
               );
@@ -126,8 +139,10 @@ function ParkCard({
           </Container>
         </Card.Body>
         <Card.Footer className="d-flex justify-content-around text-nowrap">
-          <a href={park.get("parkurl")}>Park Website</a>
-          <a href={park.get("alltrailsparkurl")}>@AllTrails</a>
+          <ExternalLink href={park.get("parkurl")}>Park Website</ExternalLink>
+          <ExternalLink href={park.get("alltrailsparkurl")}>
+            Park on AllTrails
+          </ExternalLink>
         </Card.Footer>
       </Card>
     </CardDeckCard>
