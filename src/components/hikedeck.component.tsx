@@ -38,12 +38,16 @@ function HikeCard({ hike }: { hike: Hike }) {
     <Card>
       <Card.Header className="text-center position-relative">
         <HikeDate hike={hike} />
-        <HikeMapLink hike={hike}>
-          <FontAwesomeIcon size="xs" icon={faMap} />
-        </HikeMapLink>
-        <HikePostLink hike={hike}>
-          <FontAwesomeIcon size="xs" icon={faImages} />
-        </HikePostLink>
+        {hike.mapUrl && (
+          <HikeMapLink hike={hike}>
+            <FontAwesomeIcon size="xs" icon={faMap} />
+          </HikeMapLink>
+        )}
+        {hike.postUrl && (
+          <HikePostLink hike={hike}>
+            <FontAwesomeIcon size="xs" icon={faImages} />
+          </HikePostLink>
+        )}
       </Card.Header>
       <Card.Body className="text-center">
         <Card.Title>{hike.get("hikename")}</Card.Title>

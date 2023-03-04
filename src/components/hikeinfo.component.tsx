@@ -8,19 +8,15 @@ interface IHikeLinkProps {
   children: ReactNode;
 }
 export function HikeMapLink({ hike, children }: IHikeLinkProps) {
-  /* Show map icon with link if hike has map url */
-  const mapUrl = hike.get("mapurl") || "";
   return (
-    <ExternalLink className="hike-map-link" href={mapUrl}>
+    <ExternalLink className="hike-map-link" href={hike.mapUrl}>
       {children}
     </ExternalLink>
   );
 }
 export function HikePostLink({ hike, children }: IHikeLinkProps) {
-  /* Show map icon with link if hike has post url */
-  const postUrl = hike.get("blogposturl") || hike.get("photoalbumurl") || "";
   return (
-    <ExternalLink className="hike-post-link" href={postUrl}>
+    <ExternalLink className="hike-post-link" href={hike.postUrl}>
       {children}
     </ExternalLink>
   );

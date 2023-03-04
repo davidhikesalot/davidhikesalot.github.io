@@ -58,6 +58,8 @@ export class HikeStats {
 
 export class Hike {
   _hike: IGoogleSheetRow;
+  _mapUrl: string;
+  _postUrl: string;
   _date?: Date;
   _stats: HikeStats;
   _park?: Park;
@@ -67,7 +69,12 @@ export class Hike {
     if (this._date.toString() === "Invalid Date") {
       this._date = undefined;
     }
+
+    this._mapUrl = this.get("mapurl") || "";
+    this._postUrl = this.get("blogposturl") || this.get("photoalbumurl") || "";
+
     this._stats = new HikeStats(row);
+
     this._park = parks.find(this.get("parkname"));
     if (this._park) {
       this._park.addHike(this);
@@ -92,6 +99,14 @@ export class Hike {
 
   get date(): Date | undefined {
     return this._date;
+  }
+
+  get mapUrl(): string {
+    return this._mapUrl;
+  }
+
+  get postUrl(): string {
+    return this._postUrl;
   }
 
   get parkAddress(): string {
