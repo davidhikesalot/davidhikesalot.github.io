@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.4fbe15d7.css",
-    "main.js": "/static/js/main.3114b36a.js",
+    "main.css": "/static/css/main.07ebe006.css",
+    "main.js": "/static/js/main.2f9536e1.js",
     "static/media/bg-topo-square.png": "/static/media/bg-topo-square.89f9cef1820c94f1fa71.png",
     "index.html": "/index.html",
-    "main.4fbe15d7.css.map": "/static/css/main.4fbe15d7.css.map",
-    "main.3114b36a.js.map": "/static/js/main.3114b36a.js.map"
+    "main.07ebe006.css.map": "/static/css/main.07ebe006.css.map",
+    "main.2f9536e1.js.map": "/static/js/main.2f9536e1.js.map"
   },
   "entrypoints": [
-    "static/css/main.4fbe15d7.css",
-    "static/js/main.3114b36a.js"
+    "static/css/main.07ebe006.css",
+    "static/js/main.2f9536e1.js"
   ]
 }
