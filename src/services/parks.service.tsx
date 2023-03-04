@@ -3,11 +3,15 @@ import { Hikes, Hike, HikeStats } from "./hikes.service";
 
 export class Park {
   private _park: IGoogleSheetRow;
+  private _name: string;
+  private _anchor: string;
   private _hikes: Hikes;
   private _stats: HikeStats;
 
   constructor(row: IGoogleSheetRow) {
     this._park = row;
+    this._name = this.get("parkname");
+    this._anchor = this._name.replace(/[^\w]/g, "-").toLowerCase();
     this._hikes = new Hikes();
     this._stats = new HikeStats();
   }
@@ -18,6 +22,14 @@ export class Park {
 
   get stats() {
     return this._stats;
+  }
+
+  get name() {
+    return this._name;
+  }
+
+  get anchor() {
+    return this._anchor;
   }
 
   addHike(hike: Hike) {
@@ -51,8 +63,8 @@ export class Parks {
     this._parks.push(park);
   }
 
-  get parks() {
-    return this._parks;
+  get list() {
+    return this._parks.filter((p) => p.stats.num_hikes);
   }
 
   find(parkname: string): Park {

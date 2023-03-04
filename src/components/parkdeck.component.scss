@@ -2,6 +2,26 @@
   max-width: 100%;
 }
 
+.dropdown:has(#parks-dropdown) {
+  #parks-dropdown {
+    background-color: var(--app-heading-background-color);
+    color: var(--app-heading-color);
+    border: 2px solid var(--app-heading-color);
+    font-size: small;
+    padding: 0.25em 0.5em;
+    + .dropdown-menu {
+      height: 300px;
+      overflow-y: scroll;
+      background-color: var(--app-content-background-color);
+      border: 2px solid var(--app-heading-background-color);
+    }
+    &,
+    + .dropdown-menu {
+      float: right;
+    }
+  }
+}
+
 .card-deck .card {
   width: 100%;
 

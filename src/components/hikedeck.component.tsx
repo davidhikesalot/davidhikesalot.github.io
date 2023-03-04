@@ -29,11 +29,6 @@ function HikeDate({ hike }: { hike: Hike }) {
 }
 
 function HikeCard({ hike }: { hike: Hike }) {
-  const href =
-    hike.get("blogposturl") ||
-    hike.get("photoalbumurl") ||
-    hike.get("mapurl") ||
-    "";
   return (
     <Card>
       <Card.Header className="text-center position-relative">

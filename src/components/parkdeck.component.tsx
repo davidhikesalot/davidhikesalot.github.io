@@ -1,26 +1,36 @@
 import "./parkdeck.component.scss";
 import { CardDeckHeader, CardDeck, CardDeckCard } from "./carddeck.component";
-import { Container, Card, Image, Form } from "react-bootstrap";
+import {
+  Container,
+  Card,
+  Image,
+  DropdownButton,
+  Dropdown,
+} from "react-bootstrap";
+import { useOutletContext } from "react-router-dom";
+
+import { IPageLayoutProps } from "../layouts/page.layout";
+import LazyLoad from "react-lazy-load";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
+import { faMap } from "@fortawesome/free-regular-svg-icons";
+import {
+  faCircle,
+  faDiamond,
+  faSquare,
+} from "@fortawesome/free-solid-svg-icons";
+
 import { Hike } from "../services/hikes.service";
 import { Parks } from "../services/parks.service";
 import { Park } from "../services/parks.service";
+import { ExternalLink } from "./utils.component";
 import {
   HikeListItemStats,
   HikeMapLink,
   HikePostLink,
 } from "./hikeinfo.component";
-import { useOutletContext } from "react-router-dom";
-import { IPageLayoutProps } from "../layouts/page.layout";
-import LazyLoad from "react-lazy-load";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCircle,
-  faDiamond,
-  faSquare,
-  IconDefinition,
-} from "@fortawesome/free-solid-svg-icons";
-import { ExternalLink } from "./utils.component";
-import { faMap } from "@fortawesome/free-regular-svg-icons";
+import { useEffect, useState } from "react";
+
 interface IParkCardProps {
   park: Park;
   nexthikes?: boolean;
@@ -115,18 +125,9 @@ function ParkCard({
     );
   };
 
-  const count_hikes = (cond: boolean, hikes: Hike[]): number =>
-    cond ? hikes.length : 0;
-  const num_hikes_to_show: number =
-    count_hikes(nexthikes, park.hikes.nexthikes) +
-    count_hikes(planned, park.hikes.planned) +
-    count_hikes(completed, park.hikes.planned);
-
-  return num_hikes_to_show === 0 ? (
-    <></>
-  ) : (
+  return (
     <CardDeckCard className="col-12">
-      <Card>
+      <Card id={park.anchor}>
         <Card.Header className="d-flex">{park.get("parkname")}</Card.Header>
         <Card.Body className="d-flex flex-row">
           <Container>
@@ -141,7 +142,7 @@ function ParkCard({
         <Card.Footer className="d-flex justify-content-around text-nowrap">
           <ExternalLink href={park.get("parkurl")}>Park Website</ExternalLink>
           <ExternalLink href={park.get("alltrailsparkurl")}>
-            Park on AllTrails
+            AllTrails
           </ExternalLink>
         </Card.Footer>
       </Card>
@@ -152,15 +153,58 @@ function ParkCard({
 export function ParkDeck(props: IParkDeckProps) {
   const ctx: IPageLayoutProps = useOutletContext();
   const parks: Parks = ctx.data?.parks || new Parks();
+  const [anchor, setAnchor] = useState("");
+
+  const dropdownHandler = (eventKey: any) => {
+    if (eventKey) {
+      setAnchor(eventKey);
+    }
+  };
+
+  useEffect(() => {
+    if (anchor) {
+      console.log("::" + anchor);
+      document.getElementById(anchor)?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [anchor]);
+
+  const numHikesToShow = (park: Park) => {
+    const { nexthikes = true, planned = true, completed = true } = props;
+    const num_hikes =
+      (nexthikes ? park.hikes.nexthikes.length : 0) +
+      (planned ? park.hikes.planned.length : 0) +
+      (completed ? park.hikes.completed.length : 0);
+    return num_hikes > 0;
+  };
 
   return (
     <>
       <CardDeckHeader>
-        <Card.Header>{props.title}</Card.Header>
+        <Card.Header className="d-flex">
+          <Container className="my-auto lh-1">
+            <span>{props.title}</span>
+          </Container>
+          <Container>
+            <DropdownButton
+              id="parks-dropdown"
+              onSelect={dropdownHandler}
+              title="Go to park ..."
+              align="end"
+            >
+              {parks.list.filter(numHikesToShow).map((park, index) => (
+                <>
+                  <Dropdown.Item key={park.anchor} eventKey={park.anchor}>
+                    {park.name}
+                  </Dropdown.Item>
+                </>
+              ))}
+            </DropdownButton>
+          </Container>
+        </Card.Header>
       </CardDeckHeader>
       <CardDeck>
-        {parks.parks.map((park, index) => (
-          <ParkCard key={`carddeck-card-${index}`} park={park} {...props} />
+        {parks.list.filter(numHikesToShow).map((park, index) => (
+          <ParkCard key={park.anchor} park={park} {...props} />
         ))}
       </CardDeck>
     </>
