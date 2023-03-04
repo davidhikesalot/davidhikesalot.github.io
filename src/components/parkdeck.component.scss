@@ -34,32 +34,31 @@
       width: 100%;
     }
     ul.hike-list {
-      margin-left: 6px;
+      margin-bottom: 0.75em;
+      li:not(:last-child) {
+        margin-bottom: 0.5em;
+      }
       li {
-        padding-bottom: 0.4em;
-        line-height: 1;
-        .fa-li {
-          top: 0;
-          left: -10px;
+        border-radius: 6px;
+        background-color: var(--app-content-background-color);
+        padding: 0.25em 0.5em;
+        &.easy-hike {
+          border: 2px solid green;
         }
-        &.easy-hike .fa-li {
-          color: green;
+        &.moderate-hike {
+          border: 2px solid blue;
         }
-        &.moderate-hike .fa-li {
-          color: blue;
+        &.hard-hike {
+          border: 2px solid black;
         }
-        &.hard-hike .fa-li {
-          color: black;
-        }
-        &.unknown-hike .fa-li {
-          color: green;
+        &.unknown-hike {
+          border: 2px solid var(--app-content-background-color);
         }
 
-        .hike-subtext {
+        .hike-info {
+          display: flex;
+          justify-content: space-between;
           white-space: nowrap;
-          .hike-map-link {
-            padding-left: 0.25em;
-          }
         }
       }
     }

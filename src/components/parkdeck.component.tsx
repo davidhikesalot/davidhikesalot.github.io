@@ -6,14 +6,15 @@ import {
   Image,
   DropdownButton,
   Dropdown,
+  ListGroup,
 } from "react-bootstrap";
-import { useOutletContext } from "react-router-dom";
+import { useLocation, useOutletContext } from "react-router-dom";
 
 import { IPageLayoutProps } from "../layouts/page.layout";
 import LazyLoad from "react-lazy-load";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
-import { faMap } from "@fortawesome/free-regular-svg-icons";
+import { faImages, faMap } from "@fortawesome/free-regular-svg-icons";
 import {
   faCircle,
   faDiamond,
@@ -25,6 +26,8 @@ import { Parks } from "../services/parks.service";
 import { Park } from "../services/parks.service";
 import { ExternalLink } from "./utils.component";
 import {
+  DistanceBadge,
+  ElevationBadge,
   HikeListItemStats,
   HikeMapLink,
   HikePostLink,
@@ -86,41 +89,36 @@ function ParkCard({
     ) : (
       <>
         <Card.Subtitle>{title}</Card.Subtitle>
-        <Container>
-          <ul className="fa-ul hike-list">
-            {hikes.map((hike: Hike, index: number) => {
-              const icons: Record<string, IconDefinition> = {
-                easy: faCircle,
-                moderate: faSquare,
-                hard: faDiamond,
-              };
-              let icon = icons[hike.stats.difficulty] ?? undefined;
-
-              const iconClass = `${
-                icon ? hike.stats.difficulty : "unknown"
-              }-hike`;
-
-              return (
-                <li key={index} className={iconClass}>
-                  <span className="fa-li">
-                    <FontAwesomeIcon icon={icon} listItem fixedWidth />
-                  </span>
-                  <HikePostLink hike={hike}>
-                    {hike.get("hikename")}
-                  </HikePostLink>{" "}
-                  <span className="hike-subtext">
-                    <HikeListItemStats hike={hike} />
-                    {hike.get("mapurl") && (
-                      <HikeMapLink hike={hike}>
-                        <FontAwesomeIcon icon={faMap} />
-                      </HikeMapLink>
-                    )}
-                  </span>
-                </li>
-              );
-            })}
-          </ul>
-        </Container>
+        <ListGroup as="ul" className="hike-list">
+          {hikes.map((hike: Hike, index: number) => {
+            const ratings: string[] = ["easy", "moderate", "hard"];
+            const rating: string = ratings.includes(hike.stats.difficulty)
+              ? hike.stats.difficulty
+              : "unknown";
+            return (
+              <ListGroup.Item as="li" key={index} className={`${rating}-hike`}>
+                <div className="hike-title">
+                  <span>{hike.get("hikename")}</span>,{" "}
+                  <span className="text-nowrap">{hike.get("parkname")}</span>
+                </div>
+                <div className="hike-info">
+                  <DistanceBadge hike={hike} />
+                  {hike.mapUrl && (
+                    <HikeMapLink hike={hike}>
+                      <FontAwesomeIcon icon={faMap} />
+                    </HikeMapLink>
+                  )}
+                  {hike.postUrl && (
+                    <HikePostLink hike={hike}>
+                      <FontAwesomeIcon icon={faImages} />
+                    </HikePostLink>
+                  )}
+                  <ElevationBadge hike={hike} />
+                </div>
+              </ListGroup.Item>
+            );
+          })}
+        </ListGroup>
       </>
     );
   };
@@ -153,7 +151,7 @@ function ParkCard({
 export function ParkDeck(props: IParkDeckProps) {
   const ctx: IPageLayoutProps = useOutletContext();
   const parks: Parks = ctx.data?.parks || new Parks();
-  const [anchor, setAnchor] = useState("");
+  const [anchor, setAnchor] = useState(useLocation().hash);
 
   const dropdownHandler = (eventKey: any) => {
     if (eventKey) {
@@ -162,6 +160,7 @@ export function ParkDeck(props: IParkDeckProps) {
   };
 
   useEffect(() => {
+    console.log(anchor);
     if (anchor) {
       console.log("::" + anchor);
       document.getElementById(anchor)?.scrollIntoView({ behavior: "smooth" });
