@@ -13,13 +13,7 @@ import { useLocation, useOutletContext } from "react-router-dom";
 import { IPageLayoutProps } from "../layouts/page.layout";
 import LazyLoad from "react-lazy-load";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import { faImages, faMap } from "@fortawesome/free-regular-svg-icons";
-import {
-  faCircle,
-  faDiamond,
-  faSquare,
-} from "@fortawesome/free-solid-svg-icons";
 
 import { Hike } from "../services/hikes.service";
 import { Parks } from "../services/parks.service";
@@ -29,7 +23,6 @@ import {
   DistanceBadge,
   ElevationBadge,
   HikeDifficultyIcon,
-  HikeListItemStats,
   HikeMapLink,
   HikePostLink,
 } from "./hikeinfo.component";
