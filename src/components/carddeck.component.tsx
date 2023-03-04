@@ -4,12 +4,14 @@ import { Card } from "react-bootstrap";
 
 export function CardDeckHeader(props: any) {
   return (
-    <Card className="mb-2 p-0">
-      <Card.Header>{props.title}</Card.Header>
-      {props.children && (
-        <Card.Body className="p-2">
-          <small>{props.children}</small>
-        </Card.Body>
+    <Card className="card-deck-header">
+      {props.title ? (
+        <>
+          <Card.Header>{props.title}</Card.Header>
+          <Card.Body>{props.children}</Card.Body>
+        </>
+      ) : (
+        <>{props.children}</>
       )}
     </Card>
   );

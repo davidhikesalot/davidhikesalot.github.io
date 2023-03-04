@@ -20,7 +20,7 @@ export function HikePostLink({ hike, children }: IHikeLinkProps) {
   /* Show map icon with link if hike has post url */
   const postUrl = hike.get("blogposturl") || hike.get("photoalbumurl") || "";
   return (
-    <ExternalLink className="hike-map-link" href={postUrl}>
+    <ExternalLink className="hike-post-link" href={postUrl}>
       {children}
     </ExternalLink>
   );

@@ -1,3 +1,11 @@
+.card-deck-header {
+    margin-bottom: 0.5em;
+    .card-body {
+        font-size: small;
+        padding: 0.5em;
+    }
+}
+
 .card-deck {
     max-width: unset;
     .row {
@@ -13,14 +21,6 @@
         min-width: 250px;
         min-height: fit-content;
         height: 100%;
-
-        .card-header {
-            white-space: nowrap;
-            svg.position-absolute {
-                top: 10px;
-                right: 5px;
-            }
-        }
 
         .card-body {
             font-size: smaller;

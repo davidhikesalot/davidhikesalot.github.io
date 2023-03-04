@@ -1,15 +1,18 @@
+import "./hikedeck.component.scss";
 import { Card } from "react-bootstrap";
 import { Hike } from "../services/hikes.service";
 import { format as dateFormat } from "date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { CardDeckHeader, CardDeck, CardDeckCard } from "./carddeck.component";
 import {
   HikeListStats,
   DifficultyBadge,
   DistanceBadge,
   ElevationBadge,
+  HikeMapLink,
+  HikePostLink,
 } from "./hikeinfo.component";
+import { faMap, faImages } from "@fortawesome/free-regular-svg-icons";
 
 function HikeDate({ hike }: { hike: Hike }) {
   if (!hike.date) {
@@ -33,15 +36,15 @@ function HikeCard({ hike }: { hike: Hike }) {
     "";
   return (
     <Card>
-      <a href={href} className="text-decoration-none">
-        <Card.Header className="text-center position-relative">
-          <HikeDate hike={hike} />
-          <FontAwesomeIcon
-            className="fa-xs position-absolute"
-            icon={faArrowUpRightFromSquare}
-          />
-        </Card.Header>
-      </a>
+      <Card.Header className="text-center position-relative">
+        <HikeDate hike={hike} />
+        <HikeMapLink hike={hike}>
+          <FontAwesomeIcon size="xs" icon={faMap} />
+        </HikeMapLink>
+        <HikePostLink hike={hike}>
+          <FontAwesomeIcon size="xs" icon={faImages} />
+        </HikePostLink>
+      </Card.Header>
       <Card.Body className="text-center">
         <Card.Title>{hike.get("hikename")}</Card.Title>
         <Card.Subtitle>{hike.parkAddress}</Card.Subtitle>

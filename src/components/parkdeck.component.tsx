@@ -1,6 +1,6 @@
 import "./parkdeck.component.scss";
 import { CardDeckHeader, CardDeck, CardDeckCard } from "./carddeck.component";
-import { Container, Card, Image } from "react-bootstrap";
+import { Container, Card, Image, Form } from "react-bootstrap";
 import { Hike } from "../services/hikes.service";
 import { Parks } from "../services/parks.service";
 import { Park } from "../services/parks.service";
@@ -127,7 +127,7 @@ function ParkCard({
   ) : (
     <CardDeckCard className="col-12">
       <Card>
-        <Card.Header>{park.get("parkname")}</Card.Header>
+        <Card.Header className="d-flex">{park.get("parkname")}</Card.Header>
         <Card.Body className="d-flex flex-row">
           <Container>
             <ParkMap park={park} />
@@ -155,7 +155,9 @@ export function ParkDeck(props: IParkDeckProps) {
 
   return (
     <>
-      <CardDeckHeader title={props.title}></CardDeckHeader>
+      <CardDeckHeader>
+        <Card.Header>{props.title}</Card.Header>
+      </CardDeckHeader>
       <CardDeck>
         {parks.parks.map((park, index) => (
           <ParkCard key={`carddeck-card-${index}`} park={park} {...props} />
