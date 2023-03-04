@@ -28,6 +28,7 @@ import { ExternalLink } from "./utils.component";
 import {
   DistanceBadge,
   ElevationBadge,
+  HikeDifficultyIcon,
   HikeListItemStats,
   HikeMapLink,
   HikePostLink,
@@ -98,6 +99,7 @@ function ParkCard({
             return (
               <ListGroup.Item as="li" key={index} className={`${rating}-hike`}>
                 <div className="hike-title">
+                  <HikeDifficultyIcon hike={hike} />
                   <span>{hike.get("hikename")}</span>,{" "}
                   <span className="text-nowrap">{hike.get("parkname")}</span>
                 </div>

@@ -32,30 +32,12 @@
         }
     }
 
-    .badge {
-        &.bg-secondary {
-            /* badge for stats */
-            background-color: var(--app-heading-background-color) !important;
-            color: beige; /* var(--app-heading-color) !important; */
-        }
-
-        &.bg-success {
-            /* badge for rating: easy */
-            /* background-color: var(--app-heading-background-color) !important; */
-            color: beige; /* var(--app-heading-color) !important; */
-        }
-
-        &.bg-primary {
-            /* badge for rating: moderate */
-            /* background-color: var(--app-heading-background-color) !important; */
-            color: beige; /* var(--app-heading-color) !important; */
-        }
-
-        &.bg-danger {
-            /* badge for rating: hard */
-            /* background-color: var(--app-heading-background-color) !important; */
-            color: beige; /* var(--app-heading-color) !important; */
-        }
+    .badge-transparent {
+        border: none;
+        background-color: rgba(0, 0, 0, 0) !important;
+        color: var(--bs-list-group-color);
+        padding: calc(var(--bs-badge-padding-y) * 0.25) calc(var(--bs-badge-padding-x) * 0.5);
+        line-height: unset;
     }
 
     /* Using <button class="card" on mobile messes up overall link text */

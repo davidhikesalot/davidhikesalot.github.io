@@ -2,6 +2,14 @@ import { Hike, HikeStats } from "../services/hikes.service";
 import { Badge } from "react-bootstrap";
 import { ReactNode } from "react";
 import { ExternalLink } from "./utils.component";
+import {
+  faCircle,
+  faDiamond,
+  faQuestionCircle,
+  faSquare,
+  IconDefinition,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface IHikeLinkProps {
   hike: Hike;
@@ -30,6 +38,21 @@ export function HikeListItemStats({ hike }: { hike: Hike }) {
   );
 }
 
+export function HikeDifficultyIcon({ hike }: { hike: Hike }) {
+  const icons: Record<string, IconDefinition> = {
+    easy: faCircle,
+    moderate: faSquare,
+    hard: faDiamond,
+  };
+  let icon = icons[hike.stats.difficulty] ?? faQuestionCircle;
+
+  return (
+    <span className="hike-difficulty-icon">
+      <FontAwesomeIcon icon={icon} fixedWidth />
+    </span>
+  );
+}
+
 interface IStatBadgeProps {
   hike: Hike;
   bg?: string;
@@ -42,7 +65,7 @@ export function DifficultyBadge({ hike, bg = "secondary" }: IStatBadgeProps) {
   };
   bg = ratings[hike.stats.difficulty] ?? bg;
   return (
-    <Badge bg={bg} className="stat-badge-distance">
+    <Badge bg={bg} className="hike-badge-distance">
       {hike.stats.difficulty}
     </Badge>
   );
@@ -50,7 +73,7 @@ export function DifficultyBadge({ hike, bg = "secondary" }: IStatBadgeProps) {
 
 export function DistanceBadge({ hike, bg = "secondary" }: IStatBadgeProps) {
   return (
-    <Badge bg={bg} className="stat-badge-distance">
+    <Badge bg={bg} className="badge-transparent">
       {hike.stats.distance} mi
     </Badge>
   );
@@ -58,7 +81,7 @@ export function DistanceBadge({ hike, bg = "secondary" }: IStatBadgeProps) {
 
 export function ElevationBadge({ hike, bg = "secondary" }: IStatBadgeProps) {
   return (
-    <Badge bg={bg} className="stat-badge-elevation">
+    <Badge bg={bg} className="badge-transparent">
       {hike.stats.elevation}'
     </Badge>
   );
@@ -79,9 +102,7 @@ function HikeListItem(props: { hike: Hike }) {
         </a>
       </div>
       <div className="card-footer m-0 p-0">
-        <Badge className="ms-1" bg="secondary">
-          {props.hike.stats.elevation}ft gain
-        </Badge>
+        <Badge bg="secondary">{props.hike.stats.elevation}ft gain</Badge>
       </div>
     </div>
   );
