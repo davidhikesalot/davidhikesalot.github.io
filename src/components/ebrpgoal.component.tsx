@@ -1,8 +1,7 @@
-import "./../pages/plans.page.scss";
+import "./ebrpgoal.component.scss";
 import { useOutletContext } from "react-router-dom";
 import { IPageLayoutProps } from "../layouts/page.layout";
 import { CardDeckHeader } from "./carddeck.component";
-import { HikeListCard } from "./hikelist.component";
 import { Card } from "react-bootstrap";
 import { Park } from "../services/parks.service";
 
@@ -13,11 +12,11 @@ function EBRPGoalList(props: any) {
     done: ["completed"],
   };
   return (
-    <>
+    <div className="ebrp-goal-list">
       <Card.Subtitle>{props.title}</Card.Subtitle>
       <Card.Text>
         {props.ctx.data.parks !== null && (
-          <ul style={{ columnCount: 3 }}>
+          <ul>
             {props.ctx.data.parks.list
               .filter((p: Park) =>
                 statusMap[props.status].includes(p.ebrp_goal)
@@ -31,7 +30,7 @@ function EBRPGoalList(props: any) {
           </ul>
         )}
       </Card.Text>
-    </>
+    </div>
   );
 }
 

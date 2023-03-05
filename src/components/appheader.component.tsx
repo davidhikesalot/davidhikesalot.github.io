@@ -42,21 +42,21 @@ export function AppHeader() {
           <Navbar>
             <Nav className="me-auto">
               <Navbar.Brand>
-                <LinkContainer to="goals">
+                <LinkContainer to="parks">
                   <FontAwesomeIcon icon={faHiking} />
                 </LinkContainer>
               </Navbar.Brand>
-              <LinkContainer to="goals">
-                <Nav.Link>Goals</Nav.Link>
+              <LinkContainer to="parks">
+                <Nav.Link>Parks</Nav.Link>
               </LinkContainer>
               <LinkContainer to="hikes">
                 <Nav.Link>Hikes</Nav.Link>
               </LinkContainer>
-              <LinkContainer to="parks">
-                <Nav.Link>Parks</Nav.Link>
-              </LinkContainer>
               <LinkContainer to="plans">
                 <Nav.Link>Plans</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="goals">
+                <Nav.Link>Goals</Nav.Link>
               </LinkContainer>
             </Nav>
             <Nav>
