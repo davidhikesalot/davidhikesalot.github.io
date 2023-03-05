@@ -1,0 +1,31 @@
+ul.hike-list {
+    margin-bottom: 0.75em;
+    li:not(:last-child) {
+        margin-bottom: 0.5em;
+    }
+    li {
+        border-radius: 6px;
+        background-color: var(--app-content-background-color);
+        border: 1px solid var(--app-heading-background-color) !important;
+
+        padding: 0.25em 0.5em;
+        &.easy-hike .hike-difficulty-icon {
+            color: green;
+        }
+        &.moderate-hike .hike-difficulty-icon {
+            color: blue;
+        }
+        &.hard-hike .hike-difficulty-icon {
+            color: black;
+        }
+        &.unknown-hike .hike-difficulty-icon {
+            color: var(--app-content-background-color);
+        }
+        .hike-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            white-space: nowrap;
+        }
+    }
+}

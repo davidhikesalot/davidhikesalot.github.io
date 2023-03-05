@@ -8,7 +8,7 @@ export function CardDeckHeader(props: any) {
       {props.title ? (
         <>
           <Card.Header>{props.title}</Card.Header>
-          <Card.Body>{props.children}</Card.Body>
+          {props.children && <Card.Body>{props.children}</Card.Body>}
         </>
       ) : (
         <>{props.children}</>

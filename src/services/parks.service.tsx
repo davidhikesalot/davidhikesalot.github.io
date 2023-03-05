@@ -48,6 +48,8 @@ export class Park {
 
 export class Parks {
   _parks: Park[];
+  _nexthikes: Hike[];
+  _planned: Hike[];
 
   static build(fetchJson: any): Parks {
     const parks = new Parks();
@@ -57,6 +59,8 @@ export class Parks {
 
   constructor() {
     this._parks = [];
+    this._nexthikes = [];
+    this._planned = [];
   }
 
   addPark(park: Park) {
@@ -67,9 +71,24 @@ export class Parks {
     return this._parks.filter((p) => p.stats.num_hikes);
   }
 
+  get nexthikes() {
+    return this._nexthikes;
+  }
+
+  get planned() {
+    return this._planned;
+  }
+
   find(parkname: string): Park {
     return (
       this._parks.filter((p) => p.get("parkname") === parkname)[0] || undefined
     );
+  }
+
+  updatePlans() {
+    this.list.forEach((park) => {
+      park.hikes.nexthikes.forEach((h) => this._nexthikes.push(h));
+      park.hikes.planned.forEach((h) => this._planned.push(h));
+    });
   }
 }

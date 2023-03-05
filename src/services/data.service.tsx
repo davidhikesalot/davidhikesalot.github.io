@@ -26,6 +26,8 @@ export function fetchSiteData(): Promise<ISiteData> {
     .then((rjsons) => {
       const parks: Parks = Parks.build(rjsons[0]);
       const hikes: Hikes = Hikes.build(rjsons[1], parks);
+      parks.updatePlans();
+
       return { parks, hikes };
     });
 }

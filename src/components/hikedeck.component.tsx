@@ -3,6 +3,7 @@ import { Card } from "react-bootstrap";
 import { Hike } from "../services/hikes.service";
 import { format as dateFormat } from "date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMap, faImages } from "@fortawesome/free-regular-svg-icons";
 import { CardDeckHeader, CardDeck, CardDeckCard } from "./carddeck.component";
 import {
   HikeListStats,
@@ -11,8 +12,7 @@ import {
   ElevationBadge,
   HikeMapLink,
   HikePostLink,
-} from "./hikeinfo.component";
-import { faMap, faImages } from "@fortawesome/free-regular-svg-icons";
+} from "./utils.component";
 
 function HikeDate({ hike }: { hike: Hike }) {
   if (!hike.date) {

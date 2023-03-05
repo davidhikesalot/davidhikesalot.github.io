@@ -32,14 +32,6 @@
         }
     }
 
-    .badge-transparent {
-        border: none;
-        background-color: rgba(0, 0, 0, 0) !important;
-        color: var(--bs-list-group-color);
-        padding: calc(var(--bs-badge-padding-y) * 0.25) calc(var(--bs-badge-padding-x) * 0.5);
-        line-height: unset;
-    }
-
     /* Using <button class="card" on mobile messes up overall link text */
     > * {
         a:link,

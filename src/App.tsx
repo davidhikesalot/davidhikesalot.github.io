@@ -21,9 +21,11 @@ export default function App() {
   return (
     <div className={`app ${isLoaded ? "loaded" : ""}`}>
       <AppHeader />
-      <PageLayout {...props}>
-        <Outlet />
-      </PageLayout>
+      {isLoaded && (
+        <PageLayout {...props}>
+          <Outlet />
+        </PageLayout>
+      )}
       <footer></footer>
     </div>
   );
