@@ -1,11 +1,15 @@
 .hike-list-card {
     margin-bottom: 0.5em;
+    .list-group-item:last-of-type {
+        margin-bottom: 0;
+    }
 }
 
 ul.hike-list {
-    li:not(:last-child) {
+    .list-group-item {
         margin-bottom: 0.5em;
     }
+
     li {
         border-radius: 6px;
         background-color: var(--app-content-background-color);
