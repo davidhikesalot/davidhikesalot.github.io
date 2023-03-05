@@ -12,7 +12,13 @@ import {
   HikePostLink,
 } from "./utils.component";
 
-export function HikeList({ title, hikes }: { title?: string; hikes: Hike[] }) {
+interface IHikesListProps {
+  title?: string;
+  hikes: Hike[];
+  parkFirst?: boolean;
+}
+
+export function HikeList({ title, hikes, parkFirst = false }: IHikesListProps) {
   return hikes.length === 0 ? (
     <></>
   ) : (
@@ -53,18 +59,14 @@ export function HikeList({ title, hikes }: { title?: string; hikes: Hike[] }) {
   );
 }
 
-export function HikeListCard({
-  title,
-  hikes,
-}: {
-  title: string;
-  hikes: Hike[];
-}) {
+export function HikeListCard(props: IHikesListProps) {
+  const childProps = { ...props };
+  delete childProps.title;
   return (
     <Card>
-      <Card.Header>{title}</Card.Header>
+      <Card.Header>{props.title}</Card.Header>
       <Card.Body>
-        <HikeList hikes={hikes} />
+        <HikeList {...childProps} />
       </Card.Body>
     </Card>
   );

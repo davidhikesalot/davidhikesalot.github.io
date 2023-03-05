@@ -14,12 +14,14 @@ export function PlansPage(props: any) {
         <HikeListCard
           title="Next Hikes"
           hikes={ctx.data.parks.nexthikes}
+          parkFirst
         ></HikeListCard>
       )}
       {ctx.data.parks.planned.length > 0 && (
         <HikeListCard
           title="Planned"
           hikes={ctx.data.parks.planned}
+          parkFirst
         ></HikeListCard>
       )}
     </>
