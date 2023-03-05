@@ -63,7 +63,7 @@ export function HikeListCard(props: IHikesListProps) {
   const childProps = { ...props };
   delete childProps.title;
   return (
-    <Card>
+    <Card className="hike-list-card">
       <Card.Header>{props.title}</Card.Header>
       <Card.Body>
         <HikeList {...childProps} />
