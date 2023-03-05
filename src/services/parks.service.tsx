@@ -7,6 +7,7 @@ export class Park {
   private _anchor: string;
   private _hikes: Hikes;
   private _stats: HikeStats;
+  private _ebrp_goal: string;
 
   constructor(row: IGoogleSheetRow) {
     this._park = row;
@@ -14,6 +15,7 @@ export class Park {
     this._anchor = this._name.replace(/[^\w]/g, "-").toLowerCase();
     this._hikes = new Hikes();
     this._stats = new HikeStats();
+    this._ebrp_goal = this.get("eastbaychallenge");
   }
 
   get hikes() {
@@ -30,6 +32,10 @@ export class Park {
 
   get anchor() {
     return this._anchor;
+  }
+
+  get ebrp_goal() {
+    return this._ebrp_goal;
   }
 
   addHike(hike: Hike) {

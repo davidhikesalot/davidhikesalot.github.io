@@ -4,7 +4,7 @@ import ReactDOM from "react-dom/client";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import ErrorPage from "./pages/error.page";
-import { EastBayChallengePage, HikesPage, ParksPage, PlansPage } from "./pages";
+import { GoalsPage, HikesPage, ParksPage, PlansPage } from "./pages";
 
 const router = createHashRouter([
   {
@@ -22,8 +22,8 @@ const router = createHashRouter([
         element: <HikesPage />,
       },
       {
-        path: "challenge",
-        element: <EastBayChallengePage />,
+        path: "goals",
+        element: <GoalsPage />,
       },
       {
         path: "parks",
