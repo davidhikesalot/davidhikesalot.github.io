@@ -46,7 +46,7 @@ export function EastBayChallengePage(props: any) {
             towards hiking all of the trails found on the Trail Brochures for
             the parks in the East Bay Regional Park District.
           </p>
-          <EBRPGoalList ctx={ctx} title="Completed Hikes" status="done" />
+          <EBRPGoalList ctx={ctx} title="Completed Parks" status="done" />
           <EBRPGoalList ctx={ctx} title="In Progress" status="doing" />
           <EBRPGoalList ctx={ctx} title="Not Started" status="todo" />
         </Card.Body>
