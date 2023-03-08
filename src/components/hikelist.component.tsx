@@ -1,16 +1,10 @@
 import "./hikelist.component.scss";
-import { Card, ListGroup } from "react-bootstrap";
+import { Card, Col, ListGroup, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImages, faMap } from "@fortawesome/free-regular-svg-icons";
 
 import { Hike } from "../services/hikes.service";
-import {
-  DistanceBadge,
-  ElevationBadge,
-  DifficultyIcon,
-  HikeMapLink,
-  HikePostLink,
-} from "./utils.component";
+import { DifficultyIcon, HikeMapLink, HikePostLink } from "./utils.component";
 
 interface IHikesListProps {
   title?: string;
@@ -32,25 +26,30 @@ export function HikeList({ title, hikes, parkFirst = false }: IHikesListProps) {
             : "unknown";
           return (
             <ListGroup.Item as="li" key={index} className={`${rating}-hike`}>
-              <div className="hike-title">
-                <DifficultyIcon hike={hike} />
-                <span>{hike.get("hikename")}</span>,{" "}
-                <span className="text-nowrap">{hike.get("parkname")}</span>
-              </div>
-              <div className="hike-info">
-                <DistanceBadge hike={hike} />
-                {hike.mapUrl && (
-                  <HikeMapLink hike={hike}>
-                    <FontAwesomeIcon icon={faMap} />
-                  </HikeMapLink>
-                )}
+              <Row>
+                <Col className="hike-title">
+                  <DifficultyIcon hike={hike} />
+                  <span>{hike.get("hikename")}</span>,{" "}
+                  <span className="text-nowrap">{hike.get("parkname")}</span>
+                </Col>
+              </Row>
+              <Row className="hike-info">
+                <Col className="hike-stats ">
+                  {hike.stats.distance} miles, {hike.stats.elevation}' gain
+                </Col>
                 {hike.postUrl && (
-                  <HikePostLink hike={hike}>
+                  <HikePostLink className="col" hike={hike}>
                     <FontAwesomeIcon icon={faImages} />
                   </HikePostLink>
                 )}
-                <ElevationBadge hike={hike} />
-              </div>
+                {hike.mapUrl ? (
+                  <HikeMapLink className="col" hike={hike}>
+                    <FontAwesomeIcon icon={faMap} />
+                  </HikeMapLink>
+                ) : (
+                  <Col></Col>
+                )}
+              </Row>
             </ListGroup.Item>
           );
         })}

@@ -30,18 +30,27 @@ export function ExternalLink(props: IExternalLinkProps) {
 
 interface IHikeLinkProps {
   hike: Hike;
+  className?: string;
   children: ReactNode;
 }
-export function HikeMapLink({ hike, children }: IHikeLinkProps) {
+export function HikeMapLink({
+  hike,
+  className = "",
+  children,
+}: IHikeLinkProps) {
   return (
-    <ExternalLink className="hike-map-link" href={hike.mapUrl}>
+    <ExternalLink className={className + " hike-map-link"} href={hike.mapUrl}>
       {children}
     </ExternalLink>
   );
 }
-export function HikePostLink({ hike, children }: IHikeLinkProps) {
+export function HikePostLink({
+  hike,
+  className = "",
+  children,
+}: IHikeLinkProps) {
   return (
-    <ExternalLink className="hike-post-link" href={hike.postUrl}>
+    <ExternalLink className={className + " hike-post-link"} href={hike.postUrl}>
       {children}
     </ExternalLink>
   );
