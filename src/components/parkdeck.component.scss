@@ -22,16 +22,19 @@
   }
 }
 
-.card-deck .card {
-  width: 100%;
+.card-deck {
+  gap: 0.25em;
+  .card {
+    width: 100%;
 
-  .card-footer {
-    font-size: smaller;
-  }
+    .card-footer {
+      font-size: smaller;
+    }
 
-  .card-body {
-    .park-map img {
-      width: 100%;
+    .card-body {
+      .park-map img {
+        width: 100%;
+      }
     }
   }
 }

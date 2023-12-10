@@ -68,7 +68,7 @@ function ParkCard({
 }: IParkCardProps) {
   return (
     <CardDeckCard xs={12}>
-      <Card id={park.anchor}>
+      <Card id={park.anchor} className="park-card">
         <Card.Header className="d-flex">{park.get("parkname")}</Card.Header>
         <Card.Body className="d-flex flex-row">
           <Container>
@@ -101,18 +101,22 @@ export function ParkDeck(props: IParkDeckProps) {
   const ctx: IPageLayoutProps = useOutletContext();
   const parks: Parks = ctx.data.parks || new Parks();
   const [anchor, setAnchor] = useState(useLocation().hash);
-
   const dropdownHandler = (eventKey: any) => {
-    if (eventKey) {
+    if (eventKey != null) {
       setAnchor(eventKey);
     }
   };
 
   useEffect(() => {
-    console.log(anchor);
+    document
+      .querySelectorAll("div:has(.park-card)")
+      .forEach((e) =>
+        e.setAttribute("style", `display: ${anchor ? "none" : "block"}`)
+      );
     if (anchor) {
-      console.log("::" + anchor);
-      document.getElementById(anchor)?.scrollIntoView({ behavior: "smooth" });
+      document
+        .querySelectorAll(`div:has(#${anchor})`)
+        .forEach((e) => e.setAttribute("style", "display: block;"));
     }
   }, [anchor]);
 
@@ -139,13 +143,26 @@ export function ParkDeck(props: IParkDeckProps) {
               title="Go to park ..."
               align="end"
             >
-              {parks.list.filter(numHikesToShow).map((park, index) => (
+              {anchor && (
                 <>
-                  <Dropdown.Item key={park.anchor} eventKey={park.anchor}>
-                    {park.name}
+                  <Dropdown.Item key="0" eventKey="">
+                    Show All Parks
                   </Dropdown.Item>
+                  <Dropdown.Divider />
                 </>
-              ))}
+              )}
+              {parks.list.filter(numHikesToShow).map((park, index) => {
+                console.log(
+                  `park: ${park.name}, anchor: ${park.anchor}, index: ${index}`
+                );
+                return (
+                  <>
+                    <Dropdown.Item key={index + 1} eventKey={park.anchor}>
+                      {park.name}
+                    </Dropdown.Item>
+                  </>
+                );
+              })}
             </DropdownButton>
           </Container>
         </Card.Header>
