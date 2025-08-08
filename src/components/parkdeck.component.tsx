@@ -6,6 +6,8 @@ import {
   Image,
   DropdownButton,
   Dropdown,
+  Col,
+  Row
 } from "react-bootstrap";
 import { useLocation, useOutletContext } from "react-router-dom";
 
@@ -63,20 +65,24 @@ function ParkCard({
     <CardDeckCard xs={12}>
       <Card id={park.anchor} className="park-card">
         <Card.Header className="d-flex">{park.get("parkname")}</Card.Header>
-        <Card.Body className="d-flex flex-row">
-          <Container>
-            <ParkMap park={park} />
-          </Container>
-          <Container>
-            {nexthikes && (
-              <HikeList title={"Next Hikes"} hikes={park.hikes.nexthikes} />
-            )}
-            {planned && (
-              <HikeList title={"Planned"} hikes={park.hikes.planned} />
-            )}
-            {completed && (
-              <HikeList title={"Completed"} hikes={park.hikes.completed} />
-            )}
+        <Card.Body>
+          <Container fluid>
+            <Row>
+              <Col style={{ flexGrow: 2 }}>
+                {nexthikes && (
+                  <HikeList title={"Next Hikes"} hikes={park.hikes.nexthikes} />
+                )}
+                {planned && (
+                  <HikeList title={"Planned"} hikes={park.hikes.planned} />
+                )}
+                {completed && (
+                  <HikeList title={"Completed"} hikes={park.hikes.completed} />
+                )}
+              </Col>
+              <Col>
+                <ParkMap park={park} />
+              </Col>
+            </Row>
           </Container>
         </Card.Body>
         <Card.Footer className="d-flex justify-content-around text-nowrap">
