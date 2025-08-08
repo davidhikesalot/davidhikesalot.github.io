@@ -32,29 +32,22 @@ interface IParkDeckProps {
 }
 
 function ParkMap({ park }: { park: Park }) {
-  const mapIdToUrl = (id: string) => `https://drive.google.com/uc?id=${id}`;
+  const mapIdToUrl = (endpoint: string, id: string) => {
+    // endpoint: thumbnail, uc
+    return `https://drive.google.com/${endpoint}?id=${id}`
+  };
   return (
     <LazyLoad>
       <a
-        href={mapIdToUrl(park.get("trailshikedid"))}
+        href={mapIdToUrl("uc", park.get("trailshikedid"))}
         target="_blank"
         rel="noreferrer"
         className="park-map"
       >
-        <picture className="park-map">
-          <source
-            media="(max-width: 700px)"
-            srcSet={mapIdToUrl(park.get("trailshikedmobileid"))}
-          />
-          <source
-            media="(min-width: 701px)"
-            srcSet={mapIdToUrl(park.get("trailshikedwebid"))}
-          />
-          <Image
-            alt={park.get("parkname") + " Trail Map"}
-            src={mapIdToUrl(park.get("trailshikedmobileid"))}
-          />
-        </picture>
+        <Image
+          alt={park.get("parkname") + " Trail Map"}
+          src={mapIdToUrl("thumbnail", park.get("trailshikedwebid"))}
+        />
       </a>
     </LazyLoad>
   );
