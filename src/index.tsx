@@ -14,12 +14,7 @@ const router = createHashRouter([
     children: [
       {
         index: true,
-        element: <ParksPage />,
-      },
-      {
-        index: true,
-        path: "hikes",
-        element: <HikesPage />,
+        element: <GoalsPage />,
       },
       {
         path: "goals",
@@ -28,6 +23,10 @@ const router = createHashRouter([
       {
         path: "parks",
         element: <ParksPage />,
+      },
+      {
+        path: "hikes",
+        element: <HikesPage />,
       },
       {
         path: "plans",

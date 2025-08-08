@@ -42,10 +42,13 @@ export function AppHeader() {
           <Navbar>
             <Nav className="me-auto">
               <Navbar.Brand>
-                <LinkContainer to="parks">
+              <LinkContainer to="goals">
                   <FontAwesomeIcon icon={faHiking} />
                 </LinkContainer>
               </Navbar.Brand>
+              <LinkContainer to="goals">
+                <Nav.Link>Goals</Nav.Link>
+              </LinkContainer>
               <LinkContainer to="parks">
                 <Nav.Link>Parks</Nav.Link>
               </LinkContainer>
@@ -54,9 +57,6 @@ export function AppHeader() {
               </LinkContainer>
               <LinkContainer to="plans">
                 <Nav.Link>Plans</Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="goals">
-                <Nav.Link>Goals</Nav.Link>
               </LinkContainer>
             </Nav>
             <Nav>
