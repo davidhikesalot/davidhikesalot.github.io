@@ -42,5 +42,8 @@
 @media only screen and (max-width: 600px) {
   .card-deck .card {
     min-height: auto;
+    .card-body > .container > .row {
+      flex-direction: column !important;
+    }
   }
 }

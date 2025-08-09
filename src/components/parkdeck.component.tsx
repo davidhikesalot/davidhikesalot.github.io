@@ -68,7 +68,7 @@ function ParkCard({
         <Card.Body>
           <Container fluid>
             <Row>
-              <Col style={{ flexGrow: 2 }}>
+              <Col xs={12} md={6}>
                 {nexthikes && (
                   <HikeList title={"Next Hikes"} hikes={park.hikes.nexthikes} />
                 )}
@@ -79,7 +79,7 @@ function ParkCard({
                   <HikeList title={"Completed"} hikes={park.hikes.completed} />
                 )}
               </Col>
-              <Col>
+              <Col xs={12} md={5}>
                 <ParkMap park={park} />
               </Col>
             </Row>
