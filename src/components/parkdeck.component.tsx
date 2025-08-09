@@ -66,7 +66,7 @@ function ParkCard({
       <Card id={park.anchor} className="park-card">
         <Card.Header className="d-flex">{park.get("parkname")}</Card.Header>
         <Card.Body>
-          <Container fluid>
+          <Container>
             <Row>
               <Col xs={12} md={6}>
                 {nexthikes && (
