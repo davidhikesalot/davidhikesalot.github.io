@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImages, faMap } from "@fortawesome/free-regular-svg-icons";
 
 import { Hike } from "../services/hikes.service";
-import { DifficultyIcon, HikeMapLink, HikePostLink } from "./utils.component";
+import { DifficultyIcon, FavoriteIcon, HikeMapLink, HikePostLink } from "./utils.component";
 
 interface IHikesListProps {
   title?: string;
@@ -27,10 +27,10 @@ export function HikeList({ title, hikes, parkFirst = false }: IHikesListProps) {
           return (
             <ListGroup.Item as="li" key={index} className={`${rating}-hike`}>
               <Row>
-                <Col className="hike-title">
+                <Col className="hike-title d-flex">
                   <DifficultyIcon hike={hike} />
-                  <span>{hike.get("hikename")}</span>,{" "}
-                  <span className="text-nowrap">{hike.get("parkname")}</span>
+                  <span className="ms-1">{hike.get("hikename")}, {hike.get("parkname")}</span>
+                  {hike.isFavorite && <span className="ms-auto"><FavoriteIcon /></span>}
                 </Col>
               </Row>
               <Row className="hike-info">

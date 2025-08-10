@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircle,
   faDiamond,
+  faHeart,
   faQuestionCircle,
   faSquare,
   IconDefinition,
@@ -75,6 +76,14 @@ export function DifficultyIcon({ hike }: { hike: Hike }) {
   return (
     <span className="hike-difficulty-icon">
       <FontAwesomeIcon icon={icon} fixedWidth />
+    </span>
+  );
+}
+
+export function FavoriteIcon() {
+  return (
+    <span className="hike-favorite-icon">
+      <FontAwesomeIcon icon={faHeart} className="text-danger" fixedWidth />
     </span>
   );
 }

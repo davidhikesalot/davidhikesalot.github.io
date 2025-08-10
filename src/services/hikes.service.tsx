@@ -63,6 +63,7 @@ export class Hike {
   _date?: Date;
   _stats: HikeStats;
   _park?: Park;
+
   constructor(row: IGoogleSheetRow, parks: Parks) {
     this._hike = row;
     this._date = new Date(this.get("hikedate"));
@@ -81,20 +82,20 @@ export class Hike {
     }
   }
 
-  get stats() {
-    return this._stats;
+  get isFavorite(): boolean {
+    return this.getLowerCase("favorite") === "yes";
   }
 
   get isCompleted(): boolean {
-    return this.get("hikestatus") === "completed";
+    return this.getLowerCase("hikestatus") === "completed";
   }
 
   get isPlanned(): boolean {
-    return this.get("hikestatus") !== "completed";
+    return this.getLowerCase("hikestatus") !== "completed";
   }
 
   get isNextHike(): boolean {
-    return this.get("hikestatus") === "nexthike";
+    return this.getLowerCase("hikestatus") === "nexthike";
   }
 
   get date(): Date | undefined {
@@ -103,10 +104,6 @@ export class Hike {
 
   get mapUrl(): string {
     return this._mapUrl;
-  }
-
-  get postUrl(): string {
-    return this._postUrl;
   }
 
   get parkAddress(): string {
@@ -123,6 +120,14 @@ export class Hike {
     return parts.filter((p) => !!p).join(", ");
   }
 
+  get postUrl(): string {
+    return this._postUrl;
+  }
+
+  get stats() {
+    return this._stats;
+  }
+
   get(field: string): string {
     if (!(field in this._hike)) {
       console.error(`Unknown field: ${field}`);
@@ -130,7 +135,13 @@ export class Hike {
     }
     return this._hike[field];
   }
+
+  getLowerCase(field: string): string {
+    return this.get(field).toLowerCase();
+  }
 }
+
+
 
 export class Hikes {
   private _hikes: Hike[];
