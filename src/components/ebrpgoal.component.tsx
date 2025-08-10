@@ -4,6 +4,22 @@ import { IPageLayoutProps } from "../layouts/page.layout";
 import { CardDeckHeader } from "./carddeck.component";
 import { Card } from "react-bootstrap";
 import { Park } from "../services/parks.service";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircle, faCircleHalfStroke } from "@fortawesome/free-solid-svg-icons";
+import { faCircle as faCircleThin  } from "@fortawesome/free-regular-svg-icons";
+
+const parkStatusIcons: Record<string, JSX.Element> = {
+  "not-started": <FontAwesomeIcon icon={faCircle} className="text-dark" />,
+  "started": <FontAwesomeIcon icon={faCircleThin} className="text-primary" />,
+  "halfway": <FontAwesomeIcon icon={faCircleHalfStroke} className="text-primary" />,
+  "almost-done": <FontAwesomeIcon icon={faCircle} className="text-primary" />,
+  "completed": <FontAwesomeIcon icon={faCircle} className="text-success" />,
+  "unknown": <FontAwesomeIcon icon={faCircle} />
+};
+
+const getParkStatusIcon = (status: string): JSX.Element => {
+  return <span className="fa-li">{parkStatusIcons[status] || parkStatusIcons["unknown"]}</span>;
+}
 
 function EBRPGoalList(props: any) {
   const statusMap: Record<string, Array<string>> = {
@@ -16,14 +32,14 @@ function EBRPGoalList(props: any) {
       <Card.Subtitle>{props.title}</Card.Subtitle>
       <Card.Text>
         {props.ctx.data.parks !== null && (
-          <ul>
+          <ul className="fa-ul">
             {props.ctx.data.parks.list
               .filter((p: Park) =>
                 statusMap[props.status].includes(p.ebrp_goal)
               )
-              .map((p: Park) => (
-                <li>
-                  <span className={`fa-li ebrp-goal-${p.ebrp_goal}`}></span>
+              .map((p: Park, idx: number) => (
+                <li key={idx}>
+                  {getParkStatusIcon(p.ebrp_goal)}
                   {p.name}
                 </li>
               ))}
