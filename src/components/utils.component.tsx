@@ -6,9 +6,7 @@ import {
   faCircle,
   faDiamond,
   faHeart,
-  faQuestionCircle,
   faSquare,
-  IconDefinition,
 } from "@fortawesome/free-solid-svg-icons";
 import { Hike, HikeStats } from "../services/hikes.service";
 
@@ -66,26 +64,16 @@ export function HikeListItemStats({ hike }: { hike: Hike }) {
 }
 
 export function DifficultyIcon({ hike }: { hike: Hike }) {
-  const icons: Record<string, IconDefinition> = {
-    easy: faCircle,
-    moderate: faSquare,
-    hard: faDiamond,
+  const icons: Record<string, JSX.Element> = {
+    easy: <FontAwesomeIcon icon={faCircle} className="text-success" fixedWidth />,
+    moderate: <FontAwesomeIcon icon={faSquare} className="text-primary" fixedWidth />,
+    hard: <FontAwesomeIcon icon={faDiamond} className="text-dark" fixedWidth />
   };
-  let icon = icons[hike.stats.difficulty] ?? faQuestionCircle;
-
-  return (
-    <span className="hike-difficulty-icon">
-      <FontAwesomeIcon icon={icon} fixedWidth />
-    </span>
-  );
+  return icons[hike.stats.difficulty] ?? <></>;
 }
 
 export function FavoriteIcon() {
-  return (
-    <span className="hike-favorite-icon">
-      <FontAwesomeIcon icon={faHeart} className="text-danger" fixedWidth />
-    </span>
-  );
+  return <FontAwesomeIcon icon={faHeart} className="text-danger" fixedWidth />
 }
 
 interface IStatBadgeProps {

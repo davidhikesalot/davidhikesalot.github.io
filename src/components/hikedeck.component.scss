@@ -1,33 +1,10 @@
 .card-header {
-    position: relative;
-    white-space: nowrap;
     a:has(svg) {
-        position: absolute;
-        width: 50%;
-        height: 100%;
-        top: 0;
         &:hover {
-            background-color: #cecece75;
-        }
-        svg {
-            position: absolute;
-            top: 10px;
+            background-color: var(--app-heading-background-hover);
         }
     }
-    .hike-post-link {
-        left: 0;
-        svg {
-            left: 5px;
-        }
-    }
-    .hike-map-link {
-        right: 0;
-        svg {
-            right: 5px;
-        }
-    }
-    .container {
-        margin: 0;
-        padding: 0;
-    }
+}
+.card-footer {
+    font-size: unset !important; // set to smaller globally
 }

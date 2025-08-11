@@ -1,5 +1,5 @@
 import "./hikedeck.component.scss";
-import { Card } from "react-bootstrap";
+import { Card, Stack } from "react-bootstrap";
 import { Hike } from "../services/hikes.service";
 import { format as dateFormat } from "date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,11 +7,12 @@ import { faMap, faImages } from "@fortawesome/free-regular-svg-icons";
 import { CardDeckHeader, CardDeck, CardDeckCard } from "./carddeck.component";
 import {
   HikeListStats,
-  DifficultyBadge,
   DistanceBadge,
   ElevationBadge,
   HikeMapLink,
   HikePostLink,
+  DifficultyIcon,
+  FavoriteIcon,
 } from "./utils.component";
 
 function HikeDate({ hike }: { hike: Hike }) {
@@ -31,18 +32,22 @@ function HikeDate({ hike }: { hike: Hike }) {
 function HikeCard({ hike }: { hike: Hike }) {
   return (
     <Card>
-      <Card.Header className="text-center position-relative">
-        <HikeDate hike={hike} />
-        {hike.mapUrl && (
-          <HikeMapLink hike={hike}>
-            <FontAwesomeIcon size="xs" icon={faMap} />
-          </HikeMapLink>
-        )}
-        {hike.postUrl && (
-          <HikePostLink hike={hike}>
-            <FontAwesomeIcon size="xs" icon={faImages} />
-          </HikePostLink>
-        )}
+      <Card.Header className="position-relative">
+        <div className="z-2 d-flex justify-content-between align-items-start">
+          {hike.mapUrl && (
+            <HikeMapLink hike={hike}>
+              <FontAwesomeIcon size="sm" icon={faMap} />
+            </HikeMapLink>
+          )}
+          {hike.postUrl && (
+            <HikePostLink hike={hike}>
+              <FontAwesomeIcon size="sm" icon={faImages} />
+            </HikePostLink>
+          )}
+        </div>
+        <div className="z-1 border-1 position-absolute top-50 start-50 translate-middle text-nowrap">
+          <HikeDate hike={hike} />
+        </div>
       </Card.Header>
       <Card.Body className="text-center">
         <Card.Title>{hike.get("hikename")}</Card.Title>
@@ -52,10 +57,14 @@ function HikeCard({ hike }: { hike: Hike }) {
           <Card.Text className="text-start">{hike.get("teaser")}</Card.Text>
         )}
       </Card.Body>
-      <Card.Footer className="d-flex justify-content-around">
-        <DistanceBadge hike={hike} />
-        <DifficultyBadge hike={hike} />
-        <ElevationBadge hike={hike} />
+      <Card.Footer className="position-relative initialism">
+        <div className="z-2 d-flex justify-content-between align-items-start">
+          <DifficultyIcon hike={hike}/>
+          {hike.isFavorite && <FavoriteIcon />}
+        </div>
+        <div className="z-1 border-1 position-absolute top-50 start-50 translate-middle text-nowrap">
+          <DistanceBadge hike={hike} /> / <ElevationBadge hike={hike} />
+        </div>
       </Card.Footer>
     </Card>
   );
