@@ -27,7 +27,7 @@ export function HikeList({ title, hikes, parkFirst = false }: IHikesListProps) {
           return (
             <ListGroup.Item as="li" key={index} className={`${rating}-hike`}>
               <Row>
-                <Col className="hike-title d-flex">
+                <Col className="hike-title d-flex align-items-center">
                   <DifficultyIcon hike={hike} />
                   <span className="ms-1">{hike.get("hikename")}, {hike.get("parkname")}</span>
                   {hike.isFavorite && <span className="ms-auto"><FavoriteIcon /></span>}

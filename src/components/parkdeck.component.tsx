@@ -63,7 +63,7 @@ function ParkCard({
 }: IParkCardProps) {
   return (
     <CardDeckCard xs={12}>
-      <Card id={park.anchor} className="park-card">
+      <Card id={park.anchor} className="park-card mb-2">
         <Card.Header className="d-flex">{park.get("parkname")}</Card.Header>
         <Card.Body>
           <Container>
