@@ -6,7 +6,7 @@ export default function ErrorPage() {
   console.error(error);
 
   return (
-    <div className="App">
+    <div className="app loaded">
       <AppHeader />
       <section id="content" className="card loaded">
         <div className="card-body">

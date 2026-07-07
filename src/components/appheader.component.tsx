@@ -1,11 +1,12 @@
 import "./appheader.component.scss";
 import { Navbar, Nav, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { LinkContainer } from "react-router-bootstrap";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF, faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faHiking } from "@fortawesome/free-solid-svg-icons";
+import { faHiking, faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
+import { Theme, getInitialTheme, setTheme } from "../services/theme.service";
 
 interface INavLinkWithTooltipProps {
   href?: string;
@@ -30,6 +31,40 @@ function NavLinkWithTooltip({
       }
     >
       <Nav.Link href={href}>{children}</Nav.Link>
+    </OverlayTrigger>
+  );
+}
+
+function ThemeToggle() {
+  const [theme, setThemeState] = useState<Theme>(() => getInitialTheme());
+  const nextTheme: Theme = theme === "dark" ? "light" : "dark";
+  const tooltip =
+    theme === "dark" ? "Switch to light mode" : "Switch to dark mode";
+
+  function toggleTheme() {
+    setTheme(nextTheme);
+    setThemeState(nextTheme);
+  }
+
+  return (
+    <OverlayTrigger
+      placement="bottom"
+      delay={{ show: 300, hide: 150 }}
+      overlay={
+        <Tooltip id="tooltip-theme-toggle" className="appheader-tooltip">
+          {tooltip}
+        </Tooltip>
+      }
+    >
+      <Nav.Link
+        as="button"
+        type="button"
+        className="theme-toggle-button"
+        aria-label={tooltip}
+        onClick={toggleTheme}
+      >
+        <FontAwesomeIcon icon={theme === "dark" ? faSun : faMoon} />
+      </Nav.Link>
     </OverlayTrigger>
   );
 }
@@ -72,6 +107,7 @@ export function AppHeader() {
               >
                 <FontAwesomeIcon icon={faGithub} size="lg" />
               </NavLinkWithTooltip>
+              <ThemeToggle />
             </Nav>
           </Navbar>
         </div>

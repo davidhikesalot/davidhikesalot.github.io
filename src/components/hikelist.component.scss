@@ -1,5 +1,5 @@
 .hike-list-card {
-    margin-bottom: 0.5em;
+    margin-bottom: var(--app-space-2);
     .list-group-item:last-of-type {
         margin-bottom: 0;
     }
@@ -7,27 +7,16 @@
 
 ul.hike-list {
     .list-group-item {
-        margin-bottom: 0.5em;
+        margin-bottom: var(--app-space-2);
     }
 
     li {
-        border-radius: 6px;
-        background-color: var(--app-content-background-color);
+        border-radius: var(--app-radius-sm);
+        background-color: var(--app-surface-background);
+        color: var(--app-text-primary);
         border: 1px solid var(--app-heading-background-color) !important;
 
-        padding: 0.25em 0.5em;
-        &.easy-hike .hike-difficulty-icon {
-            color: green;
-        }
-        &.moderate-hike .hike-difficulty-icon {
-            color: blue;
-        }
-        &.hard-hike .hike-difficulty-icon {
-            color: black;
-        }
-        &.unknown-hike .hike-difficulty-icon {
-            color: var(--app-content-background-color);
-        }
+        padding: var(--app-space-1) var(--app-space-2);
         .hike-info {
             white-space: nowrap;
             text-align: center;

@@ -1,19 +1,19 @@
 .card-deck-header {
-    margin-bottom: 0.5em;
+    margin-bottom: var(--app-space-2);
     .card-body {
-        font-size: small;
-        padding: 0.5em;
+        font-size: var(--app-font-size-sm);
+        padding: var(--app-space-2);
     }
 }
 
 .card-deck {
     max-width: unset;
     .row {
-        gap: 0.5em;
+        gap: var(--app-space-2);
         justify-content: space-between;
     }
     .col {
-        margin-bottom: 0.5em;
+        margin-bottom: var(--app-space-2);
     }
     .card {
         margin: 0;
@@ -22,8 +22,12 @@
         min-height: fit-content;
         height: 100%;
 
+        &:hover {
+            box-shadow: 0 var(--app-space-3) var(--app-space-5) var(--app-shadow-color);
+        }
+
         .card-body {
-            font-size: smaller;
+            font-size: var(--app-font-size-sm);
 
             hr:last-child {
                 /* If there's nothing after the hr, then don't display it. */
@@ -46,18 +50,20 @@
 .card {
     width: 100%;
     padding: 0;
-    background-color: var(--app-content-background-color);
+    background-color: var(--app-surface-background);
     border: 2px solid var(--app-heading-background-color);
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: var(--app-radius-md);
+    box-shadow: 0 var(--app-space-2) var(--app-space-4) var(--app-shadow-color);
+    transition: box-shadow var(--app-transition-duration) var(--app-transition-easing);
 
     .card-header {
         background-color: var(--app-heading-background-color);
         color: var(--app-heading-color);
         border-top-left-radius: 0;
         border-top-right-radius: 0;
-        font-weight: bold;
-        padding: 0.25em;
-        font-size: 1.1em;
+        font-weight: var(--app-font-weight-bold);
+        padding: var(--app-space-1);
+        font-size: var(--app-font-size-lg);
         width: 100%;
 
         &:has(.card-body) {
@@ -76,8 +82,8 @@
     }
 
     .card-footer {
-        padding: 0.25em;
-        font-size: 1em;
+        padding: var(--app-space-1);
+        font-size: var(--app-font-size-base);
         width: 100%;
     }
 }

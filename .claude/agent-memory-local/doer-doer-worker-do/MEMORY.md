@@ -1,0 +1,2 @@
+- [Jest resetMocks gotcha](jest-resetmocks-gotcha.md) — CRA's resetMocks:true wipes jest.mock() factory implementations; set them in the test body instead.
+- [react-bootstrap ESM imports break Jest](react-bootstrap-esm-imports.md) — never `react-bootstrap/esm/*`; use named imports from the package root.

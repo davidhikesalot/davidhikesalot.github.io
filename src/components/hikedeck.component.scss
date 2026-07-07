@@ -1,10 +1,14 @@
 .card-header {
     a:has(svg) {
+        padding: var(--app-space-1);
+        border-radius: var(--app-radius-sm);
+        transition: background-color var(--app-transition-duration) var(--app-transition-easing);
+
         &:hover {
             background-color: var(--app-heading-background-hover);
         }
     }
 }
 .card-footer {
-    font-size: unset !important; // set to smaller globally
+    font-size: var(--app-font-size-sm) !important; // smaller than the base .card-footer size
 }
