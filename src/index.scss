@@ -1,6 +1,9 @@
 body {
   margin: 0;
   font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-size: var(--app-font-size-base);
+  line-height: var(--app-line-height-base);
+  color: var(--app-text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
@@ -9,6 +12,25 @@ body {
   background-size: auto;
   background-repeat: repeat;
   background-attachment: scroll;
+  background-color: var(--app-body-tint);
+  background-blend-mode: multiply;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--app-font-weight-bold);
+  line-height: var(--app-line-height-tight);
+}
+
+h1 {
+  font-size: var(--app-font-size-xxl);
+}
+
+h2 {
+  font-size: var(--app-font-size-xl);
+}
+
+h3 {
+  font-size: var(--app-font-size-lg);
 }
 
 code {

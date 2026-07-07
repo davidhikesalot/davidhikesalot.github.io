@@ -1,6 +1,17 @@
 .ebrp-goal-list {
+    margin-bottom: var(--app-space-4);
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
     ul {
         column-count: 6;
         column-width: 150px;
+        gap: var(--app-space-2);
+    }
+
+    li {
+        margin-bottom: var(--app-space-1);
     }
 }

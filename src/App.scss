@@ -1,8 +1,86 @@
 :root {
+  // Brand colors (unchanged from original — evolution, not rebrand; same in
+  // both themes since these carry the site's identity, not surface color).
   --app-heading-background-color: #3D6B8F;
   --app-heading-background-hover: #3d6c8f83;
   --app-heading-color: #D6D4D0;
   --app-content-background-color: #D6D4D0;
+
+  // Semantic layer
+  --app-text-primary: #212529;
+  --app-text-secondary: #495057;
+  --app-border-color: rgba(0, 0, 0, 0.15);
+  --app-shadow-color: rgba(0, 0, 0, 0.2);
+  --app-link-color: var(--app-heading-background-color);
+  --app-link-hover-color: var(--app-heading-background-hover);
+  --app-surface-background: var(--app-content-background-color);
+  --app-surface-background-alt: #ffffff;
+  --app-difficulty-easy: rgb(var(--bs-success-rgb));
+  --app-difficulty-moderate: rgb(var(--bs-primary-rgb));
+  --app-difficulty-hard: rgb(var(--bs-danger-rgb));
+
+  // Loading spinner: brand blue reads fine on the light body background
+  // (matches the card-header color), but is low-contrast on dark — overridden
+  // below rather than tied 1:1 to a single token in both directions.
+  --app-spinner-color: var(--app-heading-background-color);
+
+  // Body background tint (topo image stays the same asset in both themes;
+  // only the multiply-blended tint color changes — see index.scss).
+  --app-body-tint: transparent;
+
+  // Spacing scale
+  --app-space-1: 0.25rem;
+  --app-space-2: 0.5rem;
+  --app-space-3: 1rem;
+  --app-space-4: 1.5rem;
+  --app-space-5: 2rem;
+
+  // Radius scale
+  --app-radius-sm: 0.25rem;
+  --app-radius-md: 0.5rem;
+  --app-radius-lg: 1rem;
+
+  // Transitions
+  --app-transition-duration: 150ms;
+  --app-transition-duration-slow: 300ms;
+  --app-transition-easing: ease-in-out;
+
+  // Typography scale (same in both themes — typography isn't theme-dependent)
+  --app-font-size-sm: 0.875rem;
+  --app-font-size-base: 1rem;
+  --app-font-size-lg: 1.25rem;
+  --app-font-size-xl: 1.5rem;
+  --app-font-size-xxl: 2rem;
+  --app-line-height-tight: 1.2;
+  --app-line-height-base: 1.5;
+  --app-font-weight-bold: 700;
+}
+
+:root[data-theme="dark"] {
+  // Retint Bootstrap's CDN-loaded contextual colors so text-success/
+  // text-primary/text-dark/text-danger and Badge bg="..." (difficulty icons,
+  // favorite icon, goal-status icons, badges) go dark-safe sitewide with no
+  // per-component changes (Q1).
+  --bs-success-rgb: 61, 191, 110;
+  --bs-primary-rgb: 77, 144, 254;
+  --bs-dark-rgb: 233, 236, 239;
+  --bs-danger-rgb: 255, 99, 99;
+  --bs-secondary-rgb: 134, 142, 150;
+
+  --app-text-primary: #E8E6E3;
+  --app-text-secondary: #ADB5BD;
+  --app-spinner-color: var(--app-text-primary);
+  --app-border-color: rgba(255, 255, 255, 0.15);
+  // Flat black at low opacity disappears against the already-dark
+  // --app-surface-background (#1E2227); bumped opacity + carddeck's larger
+  // blur radius (Phase 1) make it read as a real soft-elevation halo instead.
+  --app-shadow-color: rgba(0, 0, 0, 0.75);
+  --app-link-color: #6FA8DC;
+  --app-link-hover-color: #8FBEE0;
+  --app-surface-background: #1E2227;
+  --app-surface-background-alt: #262B31;
+
+  --app-body-tint: rgba(20, 24, 28, 0.55);
 }
 
 .app {
