@@ -43,5 +43,69 @@ header {
                 cursor: pointer;
             }
         }
+
+        .appheader-actions {
+            position: relative;
+
+            .appheader-menu-toggle {
+                display: none;
+                background: transparent;
+                border-top: none;
+                border-right: none;
+                border-bottom: none;
+                cursor: pointer;
+            }
+
+            .appheader-menu {
+                display: flex;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    header .navbar .appheader-actions {
+        .appheader-menu-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .appheader-menu-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.35);
+            z-index: 15;
+
+            &.show {
+                display: block;
+            }
+        }
+
+        .appheader-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            flex-direction: column;
+            min-width: 10rem;
+            background-color: var(--app-heading-background-color);
+            border: 1px solid #999999;
+            z-index: 20;
+
+            &.show {
+                display: flex;
+            }
+
+            .nav-link {
+                border-left: none;
+                border-top: 1px solid #999999;
+
+                &:first-child {
+                    border-top: none;
+                }
+            }
+        }
     }
 }
